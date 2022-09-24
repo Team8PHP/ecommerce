@@ -1,78 +1,77 @@
 * {
-    font-family: "Open Sans", sans-serif;
-  }
-  
-  .bg-main {
-    background: rgb(97, 61, 193);
-    background: linear-gradient(
-      90deg,
-      rgba(97, 61, 193, 1) 0%,
-      rgba(78, 20, 140, 1) 100%
-    );
-    color: white;
-  }
-  
-  .bg-main:hover {
-    color: white;
-  }
-  
-  .navbar {
-    height: 80px;
-  }
-  
-  .bgimage {
-    width: 100%;
-    height: 100vh;
-    background: url("images/hero-bg.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-  }
-  
-  .bgimage h1 {
-    color: rgb(49, 49, 49);
-    margin: 15rem 3rem 2rem 3rem;
-    font-size: 2.5rem;
-    font-weight: bolder;
-  }
-  
-  .bgimage button {
-    margin: 0 3rem 3rem 3rem;
-    padding: 0.7rem 3rem;
-  }
-  
-  
-  /* Start login styling */
-  .login-wrapper {
-    width: 100%;
-    padding: 10%;
-    height: 25rem;
-    box-shadow:1px 2px 5px 1px rgb(194, 193, 193);
-  }
-  .login-wrapper p {
-    font-family: "Lobster", cursive;
-    font-size: 3rem;
-    background: linear-gradient(to right, #97dffc 0%, #858ae3 25%, #330867 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .login-wrapper button {
-    font-weight: bold;
-    color: white;
+  font-family: "Open Sans", sans-serif;
+}
+
+.bg-main {
+  background: rgb(97, 61, 193);
+  background: linear-gradient(
+    90deg,
+    rgba(97, 61, 193, 1) 0%,
+    rgba(78, 20, 140, 1) 100%
+  );
+  color: white;
+}
+
+.bg-main:hover {
+  color: white;
+}
+
+.navbar {
+  height: 80px;
+}
+
+.bgimage {
+  width: 100%;
+  height: 100vh;
+  background: url("images/hero-bg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.bgimage h1 {
+  color: rgb(49, 49, 49);
+  margin: 15rem 3rem 2rem 3rem;
+  font-size: 2.5rem;
+  font-weight: bolder;
+}
+
+.bgimage button {
+  margin: 0 3rem 3rem 3rem;
+  padding: 0.7rem 3rem;
+}
+
+
+/* Start login and sign up styling */
+.form-wrapper {
+  width: 100%;
+  padding: 10%;
+  box-shadow:1px 2px 5px 1px rgb(194, 193, 193);
+}
+.form-wrapper p {
+  font-family: "Lobster", cursive;
+  font-size: 3rem;
+  background: linear-gradient(to right, #97dffc 0%, #858ae3 25%, #330867 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.form-wrapper button {
+  font-weight: bold;
+  color: white;
+  border: none;
+  background: linear-gradient(to right, #858ae3 0%, #330867 100%);
+
+}
+.form-wrapper button:hover {
+  color: white;
+  border: none;
+  background: linear-gradient(to right, #97dffc 0%, #858ae3 25%,#613DC1 50%, #330867 100%);
+}
+@media screen and (max-width: 600px) {
+  .form-wrapper {
+    padding: 0;
     border: none;
-    background: linear-gradient(to right, #858ae3 0%, #330867 100%);
-  
+    box-shadow: none;
   }
-  .login-wrapper button:hover {
-    color: white;
-    border: none;
-    background: linear-gradient(to right, #97dffc 0%, #858ae3 25%,#613DC1 50%, #330867 100%);
-  }
-  @media screen and (max-width: 600px) {
-    .login-wrapper {
-      padding: 0;
-      border: none;
-      box-shadow: none;
-    }
-  }
-  /* End login styling */
+}
+/* End login and sign up styling */
