@@ -41,12 +41,11 @@
   padding: 0.7rem 3rem;
 }
 
-
 /* Start login and sign up styling */
 .form-wrapper {
   width: 100%;
   padding: 10%;
-  box-shadow:1px 2px 5px 1px rgb(194, 193, 193);
+  box-shadow: 1px 2px 5px 1px rgb(194, 193, 193);
 }
 .form-wrapper p {
   font-family: "Lobster", cursive;
@@ -55,18 +54,28 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.form-wrapper button {
+.form-wrapper p::selection,
+.form-wrapper label::selection {
+  background-color: transparent;
+}
+.form-wrapper .btn {
   font-weight: bold;
   color: white;
   border: none;
   background: linear-gradient(to right, #858ae3 0%, #330867 100%);
-
 }
-.form-wrapper button:hover {
+.form-wrapper .btn:hover {
   color: white;
   border: none;
-  background: linear-gradient(to right, #97dffc 0%, #858ae3 25%,#613DC1 50%, #330867 100%);
+  background: linear-gradient(
+    to right,
+    #97dffc 0%,
+    #858ae3 25%,
+    #613dc1 50%,
+    #330867 100%
+  );
 }
+
 @media screen and (max-width: 600px) {
   .form-wrapper {
     padding: 0;
