@@ -19,18 +19,16 @@ class Register {
         if (this.fname == '') {
             return this.errors.fname = this.required
         } else if (!nameRegex.test(this.fname)) {
-            return this.errors.fname = "*Name must be at least 3 letters without special characters"
+            return this.errors.fname = "*Name must be at least 3 letters without special characters or numbers"
         }
-
     }
     validateLastName() {
         let nameRegex = /^[ \s]{0}[a-zA-Z]{3}/
         if (this.lname == '') {
             return this.errors.lname = this.required
         } else if (!nameRegex.test(this.lname)) {
-            return this.errors.lname = "*Name must be at least 3 letters without special characters"
+            return this.errors.lname = "*Name must be at least 3 letters without special characters or numbers"
         }
-
     }
     validateEmail() {
         let emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
@@ -39,17 +37,17 @@ class Register {
         } else if (!emailRegex.test(this.email)) {
             return this.errors.email = "*Please enter a valid email"
         }
-
     }
     validatePassword() {
         if (this.password == '') {
             return this.errors.password = this.required
         }
-
     }
     validateConfirmPassword() {
-        if (this.password == '') {
+        if (this.confirmPassword == '') {
             return this.errors.confirmPassword = this.required
+        } else if (this.confirmPassword != this.password) {
+            return this.errors.confirmPassword = "*Confirm password doesn't match with the password"
         }
 
     }
@@ -93,14 +91,55 @@ signUpBtn.addEventListener('click', function (e) {
     u1.validatePassword()
     u1.validateConfirmPassword()
 
+    const storedJson = localStorage.getItem('users');
+    const users = storedJson ? JSON.parse(storedJson) : [];
+
     if (Object.keys(u1.errors).length === 0) {
-        // best case
+
+        // scroll to top
+        window.scrollTo(0, 0)
+
+        //Remove validation errors
+        let errors = document.getElementsByClassName("error")
+        for (const error of errors) {
+            error.innerHTML = ""
+        }
+
+
+        let exist = users.length &&
+            JSON.parse(localStorage.getItem('users')).some(data =>
+                data.fname.toLowerCase() == u1.fname.toLowerCase() &&
+                data.email.toLowerCase() == u1.email.toLowerCase()
+            );
+
+        if (!exist) {
+            user = {
+                fname: u1.fname,
+                lname: u1.lname,
+                email: u1.email,
+                password: u1.password
+            }
+
+            users.push(user)
+            localStorage.setItem('users', JSON.stringify(users))
+            document.querySelector('form').reset();
+
+            document.getElementById('duplicate').classList.add("d-none")
+            document.getElementById('success').classList.remove("d-none")
+            document.getElementById('success').innerHTML = `<p>Account successfully created!</p>`
+
+        }
+        else {
+
+            document.getElementById('duplicate').classList.remove("d-none")
+            document.getElementById('duplicate').innerHTML = `<p>You have already signed up!</p>`
+        }
     } else {
-        fnameError.innerText = u1.errors.fname
-        lnameError.innerText = u1.errors.lname
-        emailError.innerText = u1.errors.email
-        passwordError.innerText = u1.errors.password
-        confirmPasswordError.innerText = u1.errors.confirmPassword
+        typeof u1.errors.fname === 'undefined' ? fnameError.innerHTML = '' : fnameError.innerHTML = `<p>${u1.errors.fname}</p>`
+        typeof u1.errors.lname === 'undefined' ? lnameError.innerHTML = '' : lnameError.innerHTML = `<p>${u1.errors.lname}</p>`
+        typeof u1.errors.email === 'undefined' ? emailError.innerHTML = '' : emailError.innerHTML = `<p>${u1.errors.email}</p>`
+        typeof u1.errors.password === 'undefined' ? passwordError.innerHTML = '' : passwordError.innerHTML = `<p>${u1.errors.password}</p>`
+        typeof u1.errors.confirmPassword === 'undefined' ? confirmPasswordError.innerHTML = '' : confirmPasswordError.innerHTML = `<p>${u1.errors.confirmPassword}</p>`
     }
 
 })

@@ -47,7 +47,7 @@
   padding: 10%;
   box-shadow: 1px 2px 5px 1px rgb(194, 193, 193);
 }
-.form-wrapper p {
+.form-wrapper #sign-up,#login {
   font-family: "Lobster", cursive;
   font-size: 3rem;
   background: linear-gradient(to right, #97dffc 0%, #858ae3 25%, #330867 100%);

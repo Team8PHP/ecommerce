@@ -73,34 +73,38 @@
         <div class="container-sm container">
             <div class="row justify-content-center my-5">
                 <div class="col-sm-12 col-lg-6">
+                    <div id="duplicate" class="d-none alert-warning p-3 mb-3 border border-warning rounded-3 text-dark">
+                    </div>
+                    <div id="success"
+                        class="d-none alert-success p-3 mb-3 border border-success rounded-3 text-success"></div>
                     <div class="form-wrapper">
-                        <p class="text-center mb-3">Sign Up</p>
+                        <p id="sign-up" class="text-center mb-3">Sign Up</p>
                         <form class="row">
                             <div class="col-sm-12 col-lg-6 mb-3">
                                 <label for="fname" class="form-label ">First name</label>
                                 <input type="text" class="form-control" name="fname" id="fname">
-                                <span class="text-danger" id="fname-error"></span>
+                                <span class="text-danger error" id="fname-error"></span>
                             </div>
                             <div class="col-sm-12 col-lg-6 mb-3">
                                 <label for="lname" class="form-label">Last name</label>
                                 <input type="text" class="form-control" name="lname" id="lname">
-                                <span class="text-danger" id="lname-error"></span>
+                                <span class="text-danger error" id="lname-error"></span>
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="email" class="form-label">Email address</label>
                                 <input type="email" class="form-control" name="email" id="email">
-                                <span class="text-danger" id="email-error"></span>
+                                <span class="text-danger error" id="email-error"></span>
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" class="form-control" name="password" id="password">
-                                <span class="text-danger" id="password-error"></span>
+                                <span class="text-danger error" id="password-error"></span>
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="confirm-password" class="form-label">Confirm password</label>
                                 <input type="password" class="form-control" name="confirm-password"
                                     id="confirm-password">
-                                <span class="text-danger" id="confirm-password-error"></span>
+                                <span class="text-danger error" id="confirm-password-error"></span>
                             </div>
                             <div class="col-12 mb-3">
                                 <input type="submit" id="register-btn" class="btn w-100" value="Sign Up">
@@ -239,7 +243,7 @@
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js"></script>
-    <script src="auth.js"></script>
+    <script src="./js/Register.js"></script>
 </body>
 
 </html>
