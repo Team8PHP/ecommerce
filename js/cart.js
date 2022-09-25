@@ -1,5 +1,5 @@
 var cart_container = document.getElementsByClassName("cart_container")[0]
-var cart_items = document.getElementsByClassName('cart-items')
+var cart_items = document.getElementsByClassName('cart-items')[0]
 
 //  determine which remove button is pressed  and decrease cart count if item is available only
 var removeCartItemButtons = document.getElementsByClassName('btn-danger')
