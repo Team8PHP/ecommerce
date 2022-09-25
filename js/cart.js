@@ -6,7 +6,6 @@ var removeCartItemButtons = document.getElementsByClassName('btn-danger')
 for (var i = 0; i < removeCartItemButtons.length; i++) {
     let button = removeCartItemButtons[i]
     button.addEventListener('click', removeCartItem)
-    localStorage.removeItem('count', cart_count);
 }
 
 // determine which item quantity is being changed and call quantity changed function
