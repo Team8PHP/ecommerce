@@ -130,7 +130,7 @@ signUpBtn.addEventListener('click', function (e) {
 
         }
         else {
-
+            document.querySelector('form').reset();
             document.getElementById('duplicate').classList.remove("d-none")
             document.getElementById('duplicate').innerHTML = `<p>You have already signed up!</p>`
         }
