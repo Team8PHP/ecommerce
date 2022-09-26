@@ -73,6 +73,8 @@
         <div class="container-sm container">
             <div class="row justify-content-center my-5">
                 <div class="col-sm-12 col-lg-6">
+                    <div id="wrong-credentials" class="d-none alert-danger p-3 mb-3 border border-danger rounded-3 text-danger">
+                    </div>
                     <div class="form-wrapper">
                         <p id="login" class="text-center mb-3">Login</p>
                         <form class="row">
@@ -85,7 +87,7 @@
                                 <input type="password" class="form-control" name="password" id="password">
                             </div>
                             <div class="col-12 mb-3">
-                                <input type="submit" class="btn w-100" value="Login">
+                                <input type="submit" id="login-btn" class="btn w-100" value="Login">
                             </div>
                         </form>
                     </div>
@@ -221,6 +223,7 @@
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js"></script>
+        <script src="./js/login.js"></script>
 </body>
 
 </html>
