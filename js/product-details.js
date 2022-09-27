@@ -53,5 +53,5 @@ function updateList(){   // Function updateList to handle Comment List
       listElem.appendChild(li);
     }
   
-    
+    localStorage.setItem('commentList',JSON.stringify(toDoArray)); // Add CommentList to localStorage
   }
