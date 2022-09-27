@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="animate.css">
     <link rel="stylesheet" href="style.css">
     <title>Team 8</title>
 </head>
@@ -29,23 +30,23 @@
 <body class="bg-light">
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-md navbar-dark bg-main py-3">
+    <nav class="navbar navbar-expand-md navbar-dark bg-main py-3 wow fadeInDown">
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Team 8</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="#home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Products</a>
+                    <a class="nav-link" href="#products">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact us</a>
+                    <a class="nav-link" href="#contact">Contact us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About us</a>
+                    <a class="nav-link" href="#footer">About us</a>
                 </li>
             </ul>
         </div>
@@ -71,12 +72,12 @@
     <!-- Navbar -->
 
     <!--Hero section-->
-    <section class="bgimage">
+    <section id="home" class="bgimage">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <h1 class="text-uppercase">Incredible Sale for Incredible People</h1>
-                    <button href="#" class="btn bg-main btn-large">Shop now</button>
+                    <h1 class="text-uppercase wow fadeInLeftBig">Incredible Sale for Incredible People</h1>
+                    <a href="#products" class="wow fadeInDownBig"><button class="btn bg-main btn-large">Shop now</button></a>
                 </div>
             </div>
         </div>
@@ -87,19 +88,19 @@
     <div id="products" class="container py-5">
         <nav>
             <div class="nav nav-tabs d-flex justify-content-center" id="nav-tab" role="tablist">
-                <button class="nav-link btn-cat active" id="nav-all-tab" data-toggle="tab" data-target="#nav-all" type="button"
-                    role="tab" aria-controls="nav-all" aria-selected="true">All</button>
-                <button class="nav-link btn-cat" id="nav-Phones-tab" data-toggle="tab" data-target="#nav-Phones" type="button"
-                    role="tab" aria-controls="nav-Phones" aria-selected="false">Phones</button>
-                <button class="nav-link btn-cat" id="nav-Laptops-tab" data-toggle="tab" data-target="#nav-Laptops" type="button"
-                    role="tab" aria-controls="nav-Laptops" aria-selected="false">Laptops</button>
+                <button class="nav-link btn-cat active" id="nav-all-tab" data-toggle="tab" data-target="#nav-all"
+                    type="button" role="tab" aria-controls="nav-all" aria-selected="true">All</button>
+                <button class="nav-link btn-cat" id="nav-Phones-tab" data-toggle="tab" data-target="#nav-Phones"
+                    type="button" role="tab" aria-controls="nav-Phones" aria-selected="false">Phones</button>
+                <button class="nav-link btn-cat" id="nav-Laptops-tab" data-toggle="tab" data-target="#nav-Laptops"
+                    type="button" role="tab" aria-controls="nav-Laptops" aria-selected="false">Laptops</button>
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
 
                 <div class="row">
-                    <div class="col-md-12 col-lg-3 my-4 mb-lg-0">
+                    <div class="col-md-12 col-lg-3 my-4 mb-lg-0  wow fadeInUp">
                         <div class="card">
                             <div class="d-flex justify-content-between p-3">
                                 <p class="lead mb-0">Today's Combo Offer</p>
@@ -134,7 +135,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-3 my-4 mb-md-0">
+                    <div class="col-md-6 col-lg-3 my-4 mb-md-0  wow fadeInUp">
                         <div class="card">
                             <div class="d-flex justify-content-between p-3">
                                 <p class="lead mb-0">Today's Combo Offer</p>
@@ -169,7 +170,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-3 my-4 mb-md-0">
+                    <div class="col-md-6 col-lg-3 my-4 mb-md-0  wow fadeInUp">
                         <div class="card">
                             <div class="d-flex justify-content-between p-3">
                                 <p class="lead mb-0">Today's Combo Offer</p>
@@ -204,7 +205,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-3 my-4 mb-md-0">
+                    <div class="col-md-6 col-lg-3 my-4 mb-md-0  wow fadeInUp">
                         <div class="card">
                             <div class="d-flex justify-content-between p-3">
                                 <p class="lead mb-0">Today's Combo Offer</p>
@@ -239,7 +240,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-3 my-4 mb-md-0">
+                    <div class="col-md-6 col-lg-3 my-4 mb-md-0  wow fadeInUp">
                         <div class="card">
                             <div class="d-flex justify-content-between p-3">
                                 <p class="lead mb-0">Today's Combo Offer</p>
@@ -274,7 +275,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-3 my-4 mb-md-0">
+                    <div class="col-md-6 col-lg-3 my-4 mb-md-0  wow fadeInUp">
                         <div class="card">
                             <div class="d-flex justify-content-between p-3">
                                 <p class="lead mb-0">Today's Combo Offer</p>
@@ -320,9 +321,9 @@
 
     <!--contact us-->
 
-    <div class="contact-container py-5 d-flex flex-column align-items-center">
-        <h1 class="mt-2 mb-5 text-white">Contact us</h1>
-        <div class="row no-gutters contact col-lg-8 col-md-10 col-sm-10 bg-light">
+    <div id="contact" class="contact-container py-5 d-flex flex-column align-items-center">
+        <h1 class="mt-2 mb-5 text-white wow fadeInDown">Contact us</h1>
+        <div class="row no-gutters contact col-lg-8 col-md-10 col-sm-10 bg-light wow fadeInUp">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
@@ -421,17 +422,17 @@
 
 
     <!-- Footer -->
-    <footer class="text-center text-lg-start bg-dark text-white">
+    <footer id="footer" class="text-center text-lg-start bg-dark text-white">
         <!-- Section: Social media -->
         <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
             <!-- Left -->
-            <div class="me-5 d-none d-lg-block">
+            <div class="me-5 d-none d-lg-block wow fadeInLeftBig">
                 <span>Get connected with us on social networks:</span>
             </div>
             <!-- Left -->
 
             <!-- Right -->
-            <div>
+            <div class="wow fadeInRightBig">
                 <a href="#" class="m-3 text-reset">
                     <i class="fab fa-facebook-f"></i>
                 </a>
@@ -456,7 +457,7 @@
         <!-- Section: Social media -->
 
         <!-- Section: Links  -->
-        <section class="">
+        <section class="wow fadeInUpBig">
             <div class="container text-center text-md-start mt-5">
                 <!-- Grid row -->
                 <div class="row mt-3">
@@ -548,6 +549,10 @@
     </footer>
     <!-- Footer -->
 
+    <script src="js/wow.min.js"></script>
+    <script>
+    new WOW().init();
+    </script>
     <script src="js/main.js"></script>
 </body>
 

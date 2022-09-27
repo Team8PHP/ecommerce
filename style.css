@@ -2,6 +2,10 @@
     font-family: 'Open Sans', sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 .bg-main {
     background: rgb(97, 61, 193);
     background: linear-gradient(90deg, rgba(97, 61, 193, 1) 0%, rgba(78, 20, 140, 1) 100%);
@@ -28,19 +32,19 @@
     font-weight: bolder;
 }
 
-.bgimage button{
+.bgimage button {
     margin: 0 3rem 3rem 3rem;
     padding: .7rem 3rem;
 }
 
-.contact-container{
+.contact-container {
     background: rgb(97, 61, 193);
     background: linear-gradient(90deg, rgba(97, 61, 193, 1) 0%, rgba(78, 20, 140, 1) 100%);
     display: flex;
     justify-content: center;
 }
 
-.contact{
+.contact {
     border-radius: 6px;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
@@ -49,13 +53,13 @@
     padding: 2rem;
 }
 
-.btn-cat{
+.btn-cat {
     padding: .6rem 2rem;
     font-weight: bold;
 }
 
 @media (min-width: 1200px) {
-    .container{
+    .container {
         max-width: 1450px;
     }
 }
