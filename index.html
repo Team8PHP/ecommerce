@@ -23,13 +23,18 @@
     <script>
         function sd (){
       localStorage.setItem('title','trial')
-      localStorage.setItem('price','trial')
+      localStorage.setItem('price','20')
       localStorage.setItem('thumbnail','trial')
       var trial_control = localStorage.getItem('title')
-      
         }
-        setInterval(sd,5000)
-     
+        sd()
+
+        function sd2 (){
+            localStorage.setItem('title','trial2')
+            localStorage.setItem('price','200')
+            localStorage.setItem('thumbnail','trial2')
+        }
+     sd2()
     </script>
 </body>
 

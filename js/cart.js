@@ -81,6 +81,8 @@ function addItemToCart(title, price, imageSrc) {
             <span class="cart-item-title">${title}</span>
         </div>
         <span class="cart-price cart-column">${price}</span>
+        <span class="cart-sub-price cart-column"></span>
+
         <div class="cart-quantity cart-column">
             <input class="cart-quantity-input" type="number" value="1">
             <button class="btn btn-danger" type="button">REMOVE</button>
@@ -107,6 +109,7 @@ function updateCartTotal() {
     }
     total = Math.round(total * 100) / 100
     document.getElementsByClassName('cart-total-price')[0].innerText = '$' + total
+    document.getElementsByClassName('cart-sub-price')[0].innerText = '$' + (price * quantity)
     
     
 }
@@ -131,3 +134,4 @@ function decrease (){
 }
 
 
+addToCartClicked()
