@@ -85,3 +85,5 @@ function updateList(){   // Function updateList to handle Comment List
       deleteFromList(el.getAttribute('key'));
     }
   });
+
+  updateList(); //Call Function
