@@ -323,7 +323,7 @@
 
     <div id="contact" class="contact-container py-5 d-flex flex-column align-items-center">
         <h1 class="mt-2 mb-5 text-white wow fadeInDown">Contact us</h1>
-        <div class="row no-gutters contact col-lg-8 col-md-10 col-sm-10 bg-light wow fadeInUp">
+        <div class="row no-gutters contact col-lg-11 col-md-10 col-sm-10 bg-light wow fadeInUp">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
@@ -342,27 +342,26 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group mt-2">
-                                            <input class="form-control" type="text" placeholder="name">
+                                            <input class="form-control" type="text" placeholder="name" id="contact-name">
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group mt-2">
-                                            <input class="form-control" type="email" placeholder="email address">
+                                            <input class="form-control" type="email" placeholder="email address" id="contact-email">
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group mt-2">
-                                            <input class="form-control" type="text" placeholder="phone">
+                                            <input class="form-control" type="text" placeholder="phone" id="contact-phone">
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group mt-2">
-                                            <textarea class="form-control" rows="3" placeholder="message"></textarea>
+                                            <textarea class="form-control" rows="3" placeholder="message" id="contact-message"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
-                                        <button type="submit"
-                                            class="btn bg-main mt-3 text-white border-0 px-3 py-2">SUBMIT</button>
+                                        <button type="submit" class="btn bg-main mt-3 text-white border-0 px-3 py-2" id="contact-submit">SUBMIT</button>
                                     </div>
                                 </div>
                             </form>
@@ -371,7 +370,7 @@
                     <div class="col-lg-12">
                         <div class="card mt-4 mb-4">
                             <div class="row">
-                                <div class="col-lg-4 col-md-4">
+                                <div class="col-lg-4 col-md-12">
                                     <div class="card-body d-flex align-items-center c-detail">
                                         <div class="mr-3 align-self-center">
                                             <i class="fa fa-address-card fa-xl" aria-hidden="true"></i>
@@ -384,7 +383,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-4">
+                                <div class="col-lg-4 col-md-12">
                                     <div class="card-body d-flex align-items-center c-detail">
                                         <div class="mr-3 align-self-center">
                                             <i class=" fa fa-phone fa-xl"></i>
@@ -397,7 +396,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-4">
+                                <div class="col-lg-4 col-md-12">
                                     <div class="card-body d-flex align-items-center c-detail">
                                         <div class="mr-3 align-self-center">
                                             <i class="fa-solid fa-envelope fa-xl"></i>
@@ -554,6 +553,7 @@
     new WOW().init();
     </script>
     <script src="js/main.js"></script>
+    <script src="js/contact.js"></script>
 </body>
 
 </html>
