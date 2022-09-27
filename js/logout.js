@@ -1,7 +1,10 @@
-var logoutBtn = document.getElementById('logout-btn')
+window.onload=function(){
+    var logoutBtn = document.getElementById('logout-btn')
+        logoutBtn.addEventListener('click', function () {
+            if (sessionStorage.length > 0) {
+                sessionStorage.clear();
+                location.reload();
+            }
+        })
+}
 
-logoutBtn.addEventListener('click', function () {
-    if (sessionStorage.length > 0) {
-        sessionStorage.clear()
-    }
-})

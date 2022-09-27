@@ -26,7 +26,6 @@ async function getProductsByRating() {
     let sorted = products.products.sort(function (a, b) {
         return b.rating - a.rating;
     }).slice(0,12);
-        console.log(sorted);
         sorted.forEach(item => {
             document.getElementById("home-products-container").innerHTML += `
         <div class="col-md-6 col-lg-3 my-4 mb-md-0  wow fadeInUp">
@@ -74,7 +73,6 @@ async function getProductsBySale() {
     let sorted = products.products.sort(function (a, b) {
         return b.discountPercentage - a.discountPercentage;
     }).slice(0,12);
-        console.log(sorted);
         sorted.forEach(item => {
             document.getElementById("home-products-sale-container").innerHTML += `
         <div class="col-md-6 col-lg-3 my-4 mb-md-0">
