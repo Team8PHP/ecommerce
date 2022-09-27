@@ -109,8 +109,11 @@ function updateCartTotal() {
     }
     total = Math.round(total * 100) / 100
     document.getElementsByClassName('cart-total-price')[0].innerText = '$' + total
+    if(document.getElementsByClassName('cart-sub-price')[0] != null){
     document.getElementsByClassName('cart-sub-price')[0].innerText = '$' + (price * quantity)
-    
+    }
+    else {return}
+   
     
 }
 
