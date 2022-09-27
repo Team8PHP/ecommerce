@@ -38,3 +38,16 @@ async function getCategoryProducts(category) {
         console.log("error", error);
     }
 }
+
+
+async function getCategories() {
+    let url = 'https://dummyjson.com/products/categories/';
+    const res = await fetch(url);
+    try {
+        const categories = await res.json();
+
+        return categories;
+    } catch (error) {
+        console.log("error", error);
+    }
+}
