@@ -54,7 +54,10 @@ loginBtn.addEventListener('click', function (e) {
             document.getElementById("wrong-credentials").classList.remove("d-none")
             document.getElementById("wrong-credentials").innerHTML = `Invalid email or password`
         } else {
+            let userFullInfo = JSON.parse(localStorage.getItem('users')).find(item => item.email == log.email)
             loggedUserInfo = {
+                fname: userFullInfo.fname,
+                lname: userFullInfo.lname,
                 email: log.email,
                 password: log.password
             }
