@@ -26,3 +26,15 @@ async function getAllProducts() {
         console.log("error", error);
     }
 }
+
+
+async function getCategoryProducts(category) {
+    let url = 'https://dummyjson.com/products/category/' + category;
+    const res = await fetch(url);
+    try {
+        const products = await res.json();
+        return products
+    } catch (error) {
+        console.log("error", error);
+    }
+}
