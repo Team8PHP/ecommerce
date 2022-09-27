@@ -55,3 +55,13 @@ function updateList(){   // Function updateList to handle Comment List
   
     localStorage.setItem('commentList',JSON.stringify(toDoArray)); // Add CommentList to localStorage
   }
+
+  function addToList(value){ //Function Add comment to List 
+    if (value === '') return;
+  
+    toDoArray.push(value);
+  
+    updateList();
+    inputElem.value = '';
+    inputElem.focus();
+  }
