@@ -87,3 +87,11 @@ function updateList(){   // Function updateList to handle Comment List
   });
 
   updateList(); //Call Function
+
+  ////////////////////////
+  //////////////////////
+  ////////////////////
+
+  var product = fetch(`https://dummyjson.com/products/category/${category}`) //Fetch API to get Similar product
+.then((data) =>{return data.json();})
+.then()
