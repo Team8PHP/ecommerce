@@ -65,3 +65,23 @@ function updateList(){   // Function updateList to handle Comment List
     inputElem.value = '';
     inputElem.focus();
   }
+
+  function deleteFromList(key){  //Function Delete Comment From List
+
+    toDoArray.splice(Number(key),1);
+  
+    updateList();
+    inputElem.value = '';
+    inputElem.focus();
+  }
+
+  form.addEventListener('submit', e => { //AddEventListener to add list in HTML
+    e.preventDefault();
+    addToList(inputElem.value);
+  });
+  document.addEventListener('click', e => {//AddEventListener to delete list from HTML
+    const el = e.target;
+    if (el.classList.contains('delete')){ 
+      deleteFromList(el.getAttribute('key'));
+    }
+  });
