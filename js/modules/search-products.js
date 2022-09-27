@@ -39,4 +39,8 @@ export function searchBar(bar_id, items_id, ref_section_id, search_buffer) {
             if (i === 3) { break; }
         }
     })
+    document.addEventListener("click", async function () {
+        let itemsDiv = document.getElementById(items_id)
+        itemsDiv.replaceChildren();
+    })
 }
