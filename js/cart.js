@@ -16,11 +16,11 @@ for (var i = 0; i < quantityInputs.length; i++) {
 }
 
 // determine which item add to cart button is being pressed and call  addtoCartClicked function
-var addToCartButtons = document.getElementsByClassName('shop-item-button')
-for (var i = 0; i < addToCartButtons.length; i++) {
-    let button = addToCartButtons[i]
-    button.addEventListener('click', addToCartClicked)
-}
+// var addToCartButtons = document.getElementsByClassName('shop-item-button')
+// for (var i = 0; i < addToCartButtons.length; i++) {
+//     let button = addToCartButtons[i]
+//     button.addEventListener('click', addToCartClicked)
+// }
 
 // event listner for purchase button
 document.getElementsByClassName('btn-purchase')[0].addEventListener('click', purchaseClicked)
@@ -52,11 +52,12 @@ function quantityChanged(event) {
 
 // get title , price and image of product and send to 3 functions 
 function addToCartClicked(event) {
-    let button = event.target
-    var shopItem = button.parentElement.parentElement
-    var title = shopItem.getElementsByClassName('shop-item-title')[0].innerText
-    var price = shopItem.getElementsByClassName('shop-item-price')[0].innerText
-    var imageSrc = shopItem.getElementsByClassName('shop-item-image')[0].src
+    // let button = event.target
+    // var shopItem = button.parentElement.parentElement
+    var title = localStorage.getItem('title')
+    var price = localStorage.getItem('price')
+    var imageSrc = localStorage.getItem('thumbnail')
+    console.log(title,price,imageSrc)
     addItemToCart(title, price, imageSrc)
     updateCartTotal()
     increase()
@@ -128,3 +129,5 @@ function decrease (){
     localStorage.setItem('count', new_value);
    
 }
+
+
