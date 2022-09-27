@@ -14,7 +14,7 @@ const toDoArray = JSON.parse(localStorage.getItem('to-do-list')) || [];
 ////////
 var detils = fetch(`https://dummyjson.com/products/${id}`) //Fetch API To git Product by ID 
 .then((data) =>{return data.json();})
-.then(productDetails =>{         //Create Function to git product details
+.then(productDetails =>{         //Create Function to get product details
     //console.log(productDetails.title);
         let makeup = `<div>
         <h2>${productDetails.title}</h2>
@@ -94,4 +94,14 @@ function updateList(){   // Function updateList to handle Comment List
 
   var product = fetch(`https://dummyjson.com/products/category/${category}`) //Fetch API to get Similar product
 .then((data) =>{return data.json();})
-.then()
+.then(similarProduct =>{  // Create Function to Add Similar Products
+    //console.log(similarProduct.products[2].title)
+    similarProduct.products.forEach(productData => {
+       const similarProducts = `<div>
+       <h2>${productData.title}</h2>
+       <img src="${productData.thumbnail}" alt="">
+       <p>${productData.price}$</p>
+         </div>`;
+        document.getElementById("categorie").insertAdjacentHTML('beforeend',similarProducts); 
+    });
+})
