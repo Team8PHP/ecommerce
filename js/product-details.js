@@ -29,3 +29,29 @@ var detils = fetch(`https://dummyjson.com/products/${id}`) //Fetch API To git Pr
         </div>`
         document.getElementById("product").insertAdjacentHTML('afterbegin',makeup);
 });
+
+////////////////////
+//////////////////
+////////////////
+
+function updateList(){   // Function updateList to handle Comment List
+    listElem.innerHTML = '';
+  
+    for (const key in toDoArray) {
+      const li = document.createElement('li');
+  
+      const span = document.createElement('span');
+      span.innerText = toDoArray[key];
+  
+      const button = document.createElement('button');
+      button.innerText = 'Delete';
+      button.setAttribute('key',key); 
+      button.classList.add('delete');
+  
+      li.appendChild(span);
+      li.appendChild(button);
+      listElem.appendChild(li);
+    }
+  
+    
+  }
