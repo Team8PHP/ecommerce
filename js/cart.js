@@ -103,6 +103,13 @@ function addToCartClicked(event) {
 function addItemToCart(title, price, imageSrc) {
     var cartRow = document.createElement('div')
     cartRow.classList.add('cart-row')
+    cartRow.classList.add('p-2')
+    cartRow.classList.add('d-flex')
+    cartRow.classList.add('flex-row')
+    cartRow.classList.add('align-items-center')
+    cartRow.classList.add('justify-content-around')
+    cartRow.classList.add('col-12')
+    cartRow.classList.add('border')
     var cartItems = document.getElementsByClassName('cart-items')[0]
     var cartItemNames = cartItems.getElementsByClassName('cart-item-title')
     for (var i = 0; i < cartItemNames.length; i++) {
@@ -113,14 +120,13 @@ function addItemToCart(title, price, imageSrc) {
     }
     var cartRowContents = `
         <div class="cart-item cart-column">
-            <img class="cart-item-image" src="${imageSrc}" width="100" height="100">
+            <img class="cart-item-image" src="${imageSrc}" width="300" height="150">
             <span class="cart-item-title">${title}</span>
         </div>
         <span class="cart-price cart-column">${price}</span>
         <span class="cart-sub-price cart-column"></span>
-
+        <input class="cart-quantity-input" type="number" value="1">
         <div class="cart-quantity cart-column">
-            <input class="cart-quantity-input" type="number" value="1">
             <button class="btn btn-danger" type="button">REMOVE</button>
         </div>`
     cartRow.innerHTML = cartRowContents
@@ -144,13 +150,7 @@ function updateCartTotal() {
         total = total + (price * quantity)
     }
     total = Math.round(total * 100) / 100
-    document.getElementsByClassName('cart-total-price')[0].innerText = '$' + total
-    // if(document.getElementsByClassName('cart-sub-price')[0] != null){
-    // document.getElementsByClassName('cart-sub-price')[0].innerText = '$' + (price * quantity)
-    // }
-    // else {return}
-   
-    
+    document.getElementsByClassName('cart-total-price')[0].innerText = 'Total = '+'$' + total 
 }
 
 
