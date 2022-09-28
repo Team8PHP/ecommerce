@@ -25,3 +25,19 @@ export async function createCategoryFilter() {
     createCategoryListItems(categories, categoriesList);
     categoriesDiv.append(categoriesList);
 }
+
+function createCategoryListItems(categories, categoriesList) {
+    categories.forEach((category, index) => {
+        let categoryItem = document.createElement("li");
+        categoryItem.setAttribute('id', 'category-' + Number(index + 1));
+        let categoryItemLink = document.createElement("a");
+        categoryItemLink.innerHTML = category;
+        categoryItemLink.href = "#products-section"
+        categoryItemLink.addEventListener("click", async function () {
+            let products = await getCategoryProducts(category)
+            showProducts(products);
+        })
+        categoryItem.append(categoryItemLink)
+        categoriesList.append(categoryItem)
+    })
+}
