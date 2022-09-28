@@ -12,7 +12,14 @@ export function showProducts(showedProducts, productsSectionID) {
     showSelectedProducts(showedProducts.products)
 }
 
-export async function showALLProducts() {
+export function showProductsWithSlider(showedProducts, productsSectionID) {
+    const allProductsDiv = document.getElementById(productsSectionID);
+    allProductsDiv.replaceChildren();
+    console.log(showedProducts);
+    createPageSlider(showedProducts, productsSectionID)
+}
+
+export async function showALLProducts(productsSectionID) {
     const products = await getAllProducts()
     showProducts(products,"products-section");
 }
@@ -61,7 +68,7 @@ function showSelectedProducts(products, productsSectionID) {
         viewMoreButton = document.getElementById('more-details-btn-' + products[i].id)
         categoryLink= document.getElementById('product-category-' + products[i].id)
         viewMoreButton.addEventListener("click", () => {
-            window.location.href = `./test.html?product-id=${products[i].id}&category=${products[i].category}`;
+            window.location.href = `./products.html?product-id=${products[i].id}&category=${products[i].category}`;
         })
         categoryLink.addEventListener("click",async()=>{
             let choosedProducts =  await getCategoryProducts(products[i].category)
@@ -70,4 +77,25 @@ function showSelectedProducts(products, productsSectionID) {
         })
 
     }
+}
+
+function createPageSlider(showedProducts, productsSectionID) {
+    let numofProducts = 12.0
+    let limit = showedProducts.products.length / numofProducts
+    const bunttonSection = document.getElementById('button-section');
+    bunttonSection.replaceChildren();
+    for (let count = 0; count <= limit; count++) {
+        let newButton = document.createElement("button");
+        newButton.innerHTML = count + 1;
+        newButton.classList.add('col-md-1', 'my-4', 'mb-md-0', 'wow', 'fadeInUp')
+        bunttonSection.append(newButton);
+        newButton.addEventListener("click", () => {
+            let input = showedProducts.products.slice(count * numofProducts, (count + 1) * numofProducts);
+            console.log(input);
+            console.log(productsSectionID);
+            showSelectedProducts(input, productsSectionID);
+        })
+    }
+    showSelectedProducts(showedProducts.products.slice(0, numofProducts), productsSectionID);
+
 }
