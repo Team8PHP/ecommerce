@@ -96,12 +96,13 @@ function updateList(){   // Function updateList to handle Comment List
 .then((data) =>{return data.json();})
 .then(similarProduct =>{  // Create Function to Add Similar Products
     //console.log(similarProduct.products[2].title)
+    if (similarProduct.products.id){}
     similarProduct.products.forEach(productData => {
        const similarProducts = `<div>
        <h2>${productData.title}</h2>
        <img src="${productData.thumbnail}" alt="">
        <p>${productData.price}$</p>
          </div>`;
-        document.getElementById("categorie").insertAdjacentHTML('beforeend',similarProducts)
+        document.getElementById("categorie").insertAdjacentHTML('beforeend',similarProducts); 
     });
 })
