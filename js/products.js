@@ -2,3 +2,10 @@ import {getAllProducts,getCategoryProducts,getCategories} from "./modules/produc
 import {searchBar} from "./modules/search-products.js"
 
 let searchProduct = {}
+
+
+function os (){
+    searchBar('searchBar','search-items','#products-section',searchProduct)
+}
+
+os();
