@@ -1,8 +1,10 @@
 /*
 Create Variable 
 */ 
-var id = 1;
-var category = "smartphones";
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const productId =  urlParams.get('product-id');
+const category = urlParams.get('category');
 const inputElem = document.querySelector('#input-name');
 const form = document.querySelector('#form');
 const listElem = document.querySelector('#commentList');
@@ -12,14 +14,14 @@ const toDoArray = JSON.parse(localStorage.getItem('to-do-list')) || [];
 ////////////
 //////////
 ////////
-var detils = fetch(`https://dummyjson.com/products/${id}`) //Fetch API To git Product by ID 
+var detils = fetch(`https://dummyjson.com/products/${productId}`) //Fetch API To git Product by ID 
 .then((data) =>{return data.json();})
 .then(productDetails =>{         //Create Function to get product details
     //console.log(productDetails.title);
         let makeup = `<div>
         <h2>${productDetails.title}</h2>
         <img src="${productDetails.thumbnail}" alt="">
-        <p>${productDetails.price}$</p>
+        <p>$${productDetails.price}</p>
         <p>${productDetails.description}</p>
         <div>
         <img src="${productDetails.images[0]}" alt="">
@@ -95,9 +97,9 @@ function updateList(){   // Function updateList to handle Comment List
   var product = fetch(`https://dummyjson.com/products/category/${category}`) //Fetch API to get Similar product
 .then((data) =>{return data.json();})
 .then(similarProduct =>{  // Create Function to Add Similar Products
-    //console.log(similarProduct.products[2].title)
-    if (similarProduct.products.id){}
+    similarProduct.products.slice([productId-1]);
     similarProduct.products.forEach(productData => {
+      
        const similarProducts = `<div>
        <h2>${productData.title}</h2>
        <img src="${productData.thumbnail}" alt="">
