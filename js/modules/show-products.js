@@ -3,7 +3,7 @@
 *                                       Show Products Module
 
 ****************************************************************************************************************** */
-import {getAllProducts} from './products-api.js';
+import {getAllProducts , getCategoryProducts} from './products-api.js';
 
 export function showProducts(showedProducts, productsSectionID) {
     const allProductsDiv = document.getElementById(productsSectionID);
@@ -21,7 +21,7 @@ export function showProductsWithSlider(showedProducts, productsSectionID) {
 
 export async function showALLProducts() {
     const products = await getAllProducts()
-    showProducts(products,"products-section");
+    showProductsWithSlider(products,"products-section");
 }
 
 function createProductCard(parentDiv, product) {
