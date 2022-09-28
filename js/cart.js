@@ -15,12 +15,6 @@ for (var i = 0; i < quantityInputs.length; i++) {
     input.addEventListener('change', quantityChanged)
 }
 
-// determine which item add to cart button is being pressed and call  addtoCartClicked function
-// var addToCartButtons = document.getElementsByClassName('shop-item-button')
-// for (var i = 0; i < addToCartButtons.length; i++) {
-//     let button = addToCartButtons[i]
-//     button.addEventListener('click', addToCartClicked)
-// }
 
 // event listner for purchase button
 document.getElementsByClassName('btn-purchase')[0].addEventListener('click', purchaseClicked)
@@ -33,6 +27,7 @@ function purchaseClicked() {
         cartItems.removeChild(cartItems.firstChild)
     }
     updateCartTotal()
+    localStorage.clear()
 }
 //  remove the parent div containing product 
 function removeCartItem(event) {
@@ -41,7 +36,7 @@ function removeCartItem(event) {
     updateCartTotal()
     decrease()
     localStorage.clear()
-//     var deleted =JSON.parse(localStorage.getItem('products'))
+//  
 //   console.log(buttonClicked.parentElement.parentElement.children[0].children[1].innerText)
 //   console.log(buttonClicked.parentElement.parentElement.children[0].children[0].src)  
 //   console.log(buttonClicked.parentElement.parentElement.children[1].innerText) 
@@ -59,7 +54,7 @@ for(let i=0; i< arr.length;i++){
             thumbnail:arr[i].children[0].children[0].src
             }
             newproducts.push(newobj)
-}
+  }
 localStorage.setItem('products',JSON.stringify(newproducts))
 // console.log(newproducts)
 
@@ -74,10 +69,8 @@ localStorage.setItem('products',JSON.stringify(newproducts))
        console.log(title,price,imageSrc)
        
     }
- 
 
-      
-    }
+ }
     
 // number of item in cart  can be only number and  >0
 function quantityChanged(event) {
@@ -90,18 +83,13 @@ function quantityChanged(event) {
 
 // get title , price and image of product and send to 3 functions 
 function addToCartClicked(event) {
-    // let button = event.target
-    // var shopItem = button.parentElement.parentElement
-    // var title = localStorage.getItem('title')
-    // var price = localStorage.getItem('price')
-    // var imageSrc = localStorage.getItem('thumbnail')
     var item =JSON.parse(localStorage.getItem('products'))
     for(let i=0 ;i<item.length;i++)
      {
        var title = item[i].title
        var price =  item[i].price 
        var imageSrc =item[i].thumbnail
-       console.log(title,price,imageSrc)
+    //    console.log(title,price,imageSrc)
        addItemToCart(title, price, imageSrc)
        updateCartTotal()
        increase()
@@ -170,7 +158,7 @@ function updateCartTotal() {
 function increase(){
     var cart_count =cart_items.childElementCount
 localStorage.setItem('count', cart_count);
-console.log(cart_count)
+// console.log(cart_count)
     
 }
 
@@ -179,7 +167,7 @@ function decrease (){
    var cart_dec = localStorage.getItem('count')
   
    var new_value = parseFloat(cart_dec) -1
-   console.log(new_value)
+//    console.log(new_value)
     localStorage.setItem('count', new_value);
    
 }
