@@ -5,8 +5,8 @@
 ****************************************************************************************************************** */
 import {getAllProducts} from './products-api.js';
 
-export function showProducts(showedProducts) {
-    const allProductsDiv = document.getElementById("products-section");
+export function showProducts(showedProducts , productsSectionID) {
+    const allProductsDiv = document.getElementById(productsSectionID);
     allProductsDiv.replaceChildren();
     let viewMoreButton = null;
     showedProducts.products.forEach((product, index) => {
@@ -23,7 +23,7 @@ export function showProducts(showedProducts) {
 
 export async function showALLProducts() {
     const products = await getAllProducts()
-    showProducts(products);
+    showProducts(products,"products-section");
 }
 
 function createProductCard(parentDiv, product) {
