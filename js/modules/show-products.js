@@ -19,7 +19,7 @@ export function showProductsWithSlider(showedProducts, productsSectionID) {
     createPageSlider(showedProducts, productsSectionID)
 }
 
-export async function showALLProducts(productsSectionID) {
+export async function showALLProducts() {
     const products = await getAllProducts()
     showProducts(products,"products-section");
 }
@@ -34,7 +34,7 @@ function createProductCard(parentDiv, product) {
             </div>
             <div class="card-body">
                 <div class="d-flex justify-content-between">
-                    <p class="small"><a href="#!" class="text-muted">${product.category}</a></p>
+                    <p class="small"><a href="/products.html#products-section" class="text-muted" id ="product-category-${product.id}" >${product.category}</a></p>
                 </div>
 
                 <div class="d-flex justify-content-between mb-3">
@@ -52,7 +52,7 @@ function createProductCard(parentDiv, product) {
             </div>
         </div>
     </div>
-   `
+    `
 }
 
 function showSelectedProducts(products, productsSectionID) {
