@@ -16,7 +16,7 @@ export async function createCategoryFilter() {
     allProducts.setAttribute('id', 'category-all');
     const allProductsLink = document.createElement("a");
     allProductsLink.innerHTML = "All Products";
-    allProductsLink.href = "#products-section"
+    allProductsLink.href = "products.html#products-section"
     allProductsLink.addEventListener("click", showALLProducts)
     allProducts.append(allProductsLink)
     categoriesList.append(allProducts);
