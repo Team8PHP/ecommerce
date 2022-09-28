@@ -5,7 +5,7 @@
 ****************************************************************************************************************** */
 
 import { getCategories , getCategoryProducts } from "./products-api.js"
-import { showProducts} from "./show-products"
+import { showProducts ,showALLProducts} from "./show-products.js"
 
 export async function createCategoryFilter() {
     const categories = await getCategories();
