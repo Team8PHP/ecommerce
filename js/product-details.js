@@ -102,6 +102,6 @@ function updateList(){   // Function updateList to handle Comment List
        <img src="${productData.thumbnail}" alt="">
        <p>${productData.price}$</p>
          </div>`;
-        document.getElementById("categorie").insertAdjacentHTML('beforeend',similarProducts); 
+        document.getElementById("categorie").insertAdjacentHTML('beforeend',similarProducts)
     });
 })
