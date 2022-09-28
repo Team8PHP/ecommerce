@@ -5,20 +5,11 @@
 ****************************************************************************************************************** */
 import {getAllProducts} from './products-api.js';
 
-export function showProducts(showedProducts , productsSectionID) {
+export function showProducts(showedProducts, productsSectionID) {
     const allProductsDiv = document.getElementById(productsSectionID);
     allProductsDiv.replaceChildren();
-    let viewMoreButton = null;
-    showedProducts.products.forEach((product, index) => {
-        createProductCard(allProductsDiv, product);
-    })
-    for (let i = 0; i < showedProducts.products.length; i++) {
-        viewMoreButton = document.getElementById('more-details-btn-' + showedProducts.products[i].id)
-        viewMoreButton.addEventListener("click", () => {
-            window.location.href = `./test.html?product-id=${showedProducts.products[i].id}&category=${showedProducts.products[i].category}`;
-        })
-    }
-
+    console.log(showedProducts);
+    showSelectedProducts(showedProducts.products)
 }
 
 export async function showALLProducts() {
@@ -55,4 +46,28 @@ function createProductCard(parentDiv, product) {
         </div>
     </div>
    `
+}
+
+function showSelectedProducts(products, productsSectionID) {
+    const allProductsDiv = document.getElementById(productsSectionID);
+    console.log(productsSectionID);
+    allProductsDiv.replaceChildren();
+    let viewMoreButton = null;
+    let categoryLink= null;
+    products.forEach((product) => {
+        createProductCard(allProductsDiv, product);
+    })
+    for (let i = 0; i < products.length; i++) {
+        viewMoreButton = document.getElementById('more-details-btn-' + products[i].id)
+        categoryLink= document.getElementById('product-category-' + products[i].id)
+        viewMoreButton.addEventListener("click", () => {
+            window.location.href = `./test.html?product-id=${products[i].id}&category=${products[i].category}`;
+        })
+        categoryLink.addEventListener("click",async()=>{
+            let choosedProducts =  await getCategoryProducts(products[i].category)
+            console.log();
+            showProductsWithSlider(choosedProducts, "products-section");
+        })
+
+    }
 }
