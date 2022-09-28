@@ -40,7 +40,45 @@ function removeCartItem(event) {
     buttonClicked.parentElement.parentElement.remove()
     updateCartTotal()
     decrease()
+    localStorage.clear()
+//     var deleted =JSON.parse(localStorage.getItem('products'))
+//   console.log(buttonClicked.parentElement.parentElement.children[0].children[1].innerText)
+//   console.log(buttonClicked.parentElement.parentElement.children[0].children[0].src)  
+//   console.log(buttonClicked.parentElement.parentElement.children[1].innerText) 
+ 
+var newproducts = [ ]
+// console.log(cart_items.children)
+let arr =cart_items.children
+for(let i=0; i< arr.length;i++){
+    // console.log(arr[i].children[0].children[1].innerText)
+    // console.log(arr[i].children[0].children[0].src)
+    // console.log(arr[i].children[1].innerText)
+    var newobj =
+        {title: arr[i].children[0].children[1].innerText,
+            price:arr[i].children[1].innerText,
+            thumbnail:arr[i].children[0].children[0].src
+            }
+            newproducts.push(newobj)
 }
+localStorage.setItem('products',JSON.stringify(newproducts))
+// console.log(newproducts)
+
+ var itemget =JSON.parse(localStorage.getItem('products'))
+//  console.log(itemget)
+
+    for(let i=0 ;i<itemget.length;i++)
+     {
+       var title = itemget[i].title
+       var price =  itemget[i].price 
+       var imageSrc =itemget[i].thumbnail
+       console.log(title,price,imageSrc)
+       
+    }
+ 
+
+      
+    }
+    
 // number of item in cart  can be only number and  >0
 function quantityChanged(event) {
     var input = event.target
@@ -54,13 +92,23 @@ function quantityChanged(event) {
 function addToCartClicked(event) {
     // let button = event.target
     // var shopItem = button.parentElement.parentElement
-    var title = localStorage.getItem('title')
-    var price = localStorage.getItem('price')
-    var imageSrc = localStorage.getItem('thumbnail')
-    console.log(title,price,imageSrc)
-    addItemToCart(title, price, imageSrc)
-    updateCartTotal()
-    increase()
+    // var title = localStorage.getItem('title')
+    // var price = localStorage.getItem('price')
+    // var imageSrc = localStorage.getItem('thumbnail')
+    var item =JSON.parse(localStorage.getItem('products'))
+    for(let i=0 ;i<item.length;i++)
+     {
+       var title = item[i].title
+       var price =  item[i].price 
+       var imageSrc =item[i].thumbnail
+       console.log(title,price,imageSrc)
+       addItemToCart(title, price, imageSrc)
+       updateCartTotal()
+       increase()
+      
+    }
+    // console.log(title,price,imageSrc)
+    
 }
 
 // add new div containing product details and check if item is already added alert the user
@@ -109,10 +157,10 @@ function updateCartTotal() {
     }
     total = Math.round(total * 100) / 100
     document.getElementsByClassName('cart-total-price')[0].innerText = '$' + total
-    if(document.getElementsByClassName('cart-sub-price')[0] != null){
-    document.getElementsByClassName('cart-sub-price')[0].innerText = '$' + (price * quantity)
-    }
-    else {return}
+    // if(document.getElementsByClassName('cart-sub-price')[0] != null){
+    // document.getElementsByClassName('cart-sub-price')[0].innerText = '$' + (price * quantity)
+    // }
+    // else {return}
    
     
 }

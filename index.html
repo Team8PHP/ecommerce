@@ -21,20 +21,42 @@
         crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
     <script>
-        function sd (){
-      localStorage.setItem('title','trial')
-      localStorage.setItem('price','20')
-      localStorage.setItem('thumbnail','trial')
-      var trial_control = localStorage.getItem('title')
+     var products = [
+        {
+            title : 'sweatshirt',
+            price : 20 ,
+            thumbnail : 'sdasd'
         }
-        sd()
+        ,
 
-        function sd2 (){
-            localStorage.setItem('title','trial2')
-            localStorage.setItem('price','200')
-            localStorage.setItem('thumbnail','trial2')
+        {
+            title : 'sweatshirt12',
+            price : 200 ,
+            thumbnail : 'sdasdasd'
+        },
+        {
+            title : 'sweatshirt123',
+            price : 200 ,
+            thumbnail : 'sdasdasd'
         }
-     sd2()
+       
+     ]
+
+     function setcart (){
+        localStorage.setItem('products',JSON.stringify(products) )
+     }
+     setcart()
+    //  console.log(localStorage.getItem('products'))
+     var item =JSON.parse(localStorage.getItem('products')) 
+    //  console.log(item)
+     for(let i=0 ;i<item.length;i++)
+     {
+        console.log(item[i].title)
+        console.log(item[i].price)  
+        console.log(item[i].thumbnail)
+    }
+        setcart()
+     
     </script>
 </body>
 
