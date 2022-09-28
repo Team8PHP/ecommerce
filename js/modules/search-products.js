@@ -4,7 +4,7 @@
 
 ****************************************************************************************************************** */
 
-import { getAllProducts } from "./prdoucts-api.js"
+import { getAllProducts } from "./products-api.js"
 
 function filterItems(arr, query) {
     return arr.filter((element) => element.title.toLowerCase().includes(query.toLowerCase()));
@@ -13,7 +13,7 @@ function filterItems(arr, query) {
 export function searchBar(bar_id, items_id, ref_section_id, search_buffer) {
     const searchBar = document.getElementById(bar_id)
     searchBar.addEventListener("focus", async function () {
-        if (Object.keys(searchProduct).length === 0) {
+        if (Object.keys(search_buffer).length === 0) {
             search_buffer = await getAllProducts();
         } else {
             return
