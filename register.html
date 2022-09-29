@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- Start head -->
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- start google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <!-- end google fonts -->
+
+    <!-- start bootstrap & font awesome css files -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <!-- end bootstrap & font awesome css files -->
+
+    <!-- start bootstrap & font awesome scripts -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -19,15 +34,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
+    <!-- end bootstrap & font awesome scripts -->
+
+    <!-- title -->
     <title>Sign Up</title>
 </head>
+<!-- End head -->
+<!-- Start body -->
 
 <body class="bg-light">
     <!-- Navbar -->
@@ -62,8 +75,8 @@
                     <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping fa-lg"></i></a>
                 </li>
                 <div class="d-flex" id="auth-container">
-                
-            </div>
+
+                </div>
             </ul>
         </div>
     </nav>
@@ -73,12 +86,19 @@
         <div class="container-sm container">
             <div class="row justify-content-center my-5">
                 <div class="col-sm-12 col-lg-6">
+                    <!-- Start duplicate warning -->
                     <div id="duplicate" class="d-none alert-warning p-3 mb-3 border border-warning rounded-3 text-dark">
                     </div>
+                    <!-- End duplicate warning -->
+                    <!-- Start success message -->
                     <div id="success"
                         class="d-none alert-success p-3 mb-3 border border-success rounded-3 text-success"></div>
+                    <!-- End success message -->
+                    <!-- Start form wrapper -->
                     <div class="form-wrapper">
+                        <!-- title for the registration form -->
                         <p id="sign-up" class="text-center mb-3">Sign Up</p>
+                        <!-- Start Registration form -->
                         <form class="row">
                             <div class="col-sm-12 col-lg-6 mb-3">
                                 <label for="fname" class="form-label ">First name</label>
@@ -110,7 +130,9 @@
                                 <input type="submit" id="register-btn" class="btn w-100" value="Sign Up">
                             </div>
                         </form>
+                        <!-- End Registration form -->
                     </div>
+                    <!-- End form wrapper -->
                 </div>
             </div>
         </div>
@@ -245,9 +267,13 @@
     <!-- Footer -->
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js"></script>
+    <!-- script for the registration process -->
     <script src="./js/Register.js"></script>
+    <!-- script for the logout process -->
     <script src="js/logout.js"></script>
+    <!-- script for navbar -->
     <script src="js/navbar.js"></script>
 </body>
+<!-- End body -->
 
 </html>
