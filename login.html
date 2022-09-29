@@ -1,15 +1,31 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
+<!-- start head -->
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- start google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <!-- end google fonts -->
+
+    <!-- start bootstrap & font awesome css files -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <!-- end bootstrap & font awesome css files -->
+
+    <!-- start bootstrap & font awesome scripts -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -19,15 +35,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
+    <!-- end bootstrap & font awesome scripts -->
+
+    <!-- title -->
     <title>Login</title>
 </head>
+<!-- end head -->
+
+<!-- start body -->
 
 <body class="bg-light">
     <!-- Navbar -->
@@ -73,11 +88,16 @@
         <div class="container-sm container">
             <div class="row justify-content-center my-5">
                 <div class="col-sm-12 col-lg-6">
+                    <!-- Start wrong credentials alert -->
                     <div id="wrong-credentials"
                         class="d-none alert-danger p-3 mb-3 border border-danger rounded-3 text-danger">
                     </div>
+                    <!-- End wrong credentials alert -->
+                    <!-- Start form wrapper -->
                     <div class="form-wrapper">
+                        <!-- title for the form -->
                         <p id="login" class="text-center mb-3">Login</p>
+                        <!-- Start Login form -->
                         <form class="row">
                             <div class="col-12 mb-3">
                                 <label for="email" class="form-label">Email address</label>
@@ -91,7 +111,9 @@
                                 <input type="submit" id="login-btn" class="btn w-100" value="Login">
                             </div>
                         </form>
+                        <!-- End Login form -->
                     </div>
+                    <!-- End form wrapper -->
                 </div>
             </div>
         </div>
@@ -226,9 +248,13 @@
     <!-- Footer -->
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js"></script>
+    <!-- script for login process -->
     <script src="./js/login.js"></script>
+    <!-- script for logout process -->
     <script src="js/logout.js"></script>
+    <!-- script for navbar -->
     <script src="js/navbar.js"></script>
 </body>
+<!-- End body -->
 
 </html>
