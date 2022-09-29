@@ -172,7 +172,6 @@ html {
 }
 
 /* End login and sign up styling */
-/* End login and sign up styling */
 
 /* Products page */
 .search-result a {
@@ -251,4 +250,14 @@ html {
     }
 }
 
+/* product details */
+
+#commentList ul{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#commentList li{
+    list-style: none;
+}
 
