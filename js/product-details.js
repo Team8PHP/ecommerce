@@ -20,19 +20,51 @@ const detils = fetch(`https://dummyjson.com/products/${productId}`) //Fetch API 
 .then((data) =>{return data.json();})
 .then(productDetails =>{         //Create Function to get product details
     //console.log(productDetails.title);
-        let makeup = `<div>
-        <h2>${productDetails.title}</h2>
-        <img src="${productDetails.thumbnail}" alt="">
-        <p>$${productDetails.price}</p>
-        <p>${productDetails.description}</p>
-        <p>Avilabe in stock: ${productDetails.stock}</p>
-        <p>Rating ${productDetails.rating}/5</p>
-        <div>
-        <img src="${productDetails.images[0]}" alt="">
-        <img src="${productDetails.images[1]}" alt="">
-        <img src="${productDetails.images[2]}" alt="">
+        let makeup = `
+        <div class="container mt-5 mb-5">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="row">
+                <div class="col-md-12 col-lg-6">
+                  <div class="images p-3">
+                    <div class="text-center p-4"> <img id="main-image" class="wow fadeInLeft" src="${productDetails.thumbnail}" width="400" height="400" />
+                    </div>
+                    <div class="thumbnail text-center">
+                    <img onclick="change_image(this)" src="${productDetails.thumbnail}" width="70" height="70">
+                    <img onclick="change_image(this)" src="${productDetails.images[0]}" width="70" height="70">
+                    <img onclick="change_image(this)" src="${productDetails.images[1]}" width="70" height="70">
+                    <img onclick="change_image(this)" src="${productDetails.images[2]}" width="70" height="70">
+                        </div>
+                  </div>
+                </div>
+                <div class="col-md-6 wow fadeInRight">
+                  <div class="product p-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="d-flex align-items-center"> <i class="fa fa-long-arrow-left" onclick="history.back()"></i> <span
+                      onclick="history.back()" class="ml-1">Back</span> </div> <i class="fa fa-shopping-cart text-muted"></i>
+                    </div>
+                    <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand">${productDetails.category}</span>
+                      <h5 class="text-uppercase">${productDetails.title}</h5>
+                      <div class="price d-flex flex-row align-items-center"> <span class="act-price" style="font-size:3rem;">$${productDetails.price}</span>
+                        <div class="ml-5"> <span class="text-danger">${parseInt(productDetails.discountPercentage)}% OFF</span> </div>
+                      </div>
+                    </div>
+                    <p class="about">${productDetails.description}</p>
+                    <div class="sizes mt-3">
+                    <h5 class="">In stock : ${productDetails.stock}</h5>
+                    <h5 class="mt-2">Rating : ${productDetails.rating}/5</h5>
+                    </div>
+                    <div class="cart mt-4 align-items-center"> <button class="btn bg-main text-uppercase mr-2 px-4">Add
+                        to cart</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        </div>`
+      </div>`
         document.getElementById("product").insertAdjacentHTML('afterbegin',makeup);
 });
 
@@ -45,12 +77,13 @@ function updateList(){   // Function updateList to handle Comment List
   
     for (const key in toDoArray) {
       const li = document.createElement('li');
-  
+      li.classList.add('list-group-item','w-50','d-flex','justify-content-between','align-items-center');
       const span = document.createElement('span');
       span.innerText = toDoArray[key];
   
       const button = document.createElement('button');
       button.innerText = 'Delete';
+      button.classList.add('btn','btn-danger');
       button.setAttribute('key',key); 
       button.classList.add('delete');
   
