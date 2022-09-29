@@ -13,10 +13,12 @@ export async function createCategoryFilter() {
     const categoriesList = document.createElement("ul");
 
     const allProducts = document.createElement("li");
+    
     allProducts.setAttribute('id', 'category-all');
     const allProductsLink = document.createElement("a");
     allProductsLink.innerHTML = "All Products";
-    allProductsLink.href = "products.html#products-section"
+    allProductsLink.href = "products.html#products-section";
+    categoriesList.classList.add("nav-link","active");
     allProductsLink.addEventListener("click", showALLProducts)
     allProducts.append(allProductsLink)
     categoriesList.append(allProducts);
