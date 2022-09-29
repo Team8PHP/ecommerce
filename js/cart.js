@@ -173,4 +173,43 @@ function decrease (){
 }
 
 
+
+
 addToCartClicked()
+
+
+
+function pagesaddtocart(products){
+    var arrOfProducts = []
+    var newProduct = 
+                {
+                    title: 'sweatshirt',
+                    price: 20,
+                    thumbnail: 'sdasd'
+                }
+    
+     
+            if (localStorage.products != null) {
+                console.log('if ')
+                arrOfProducts = JSON.parse(localStorage.getItem('products'))
+                console.log(arrOfProducts);
+                arrOfProducts.push(newProduct);
+                console.log(arrOfProducts);
+                localStorage.setItem('products',JSON.stringify(arrOfProducts) )
+                // let watch = JSON.parse(localStorage.getItem('products'))
+                // console.log(watch)
+            } else {
+                console.log('else ')
+                arrOfProducts.push(newProduct);
+                localStorage.setItem('products',JSON.stringify(arrOfProducts) )
+            }
+            console.log(arrOfProducts)
+            return ;
+    
+        }
+
+
+    function setcart (){
+        localStorage.setItem('products',JSON.stringify(arrOfProducts) )
+    }
+

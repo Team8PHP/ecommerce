@@ -20,44 +20,7 @@
         integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
         crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
-    <script>
-     var products = [
-        {
-            title : 'sweatshirt',
-            price : 20 ,
-            thumbnail : 'sdasd'
-        }
-        ,
-
-        {
-            title : 'sweatshirt12',
-            price : 200 ,
-            thumbnail : 'sdasdasd'
-        },
-        {
-            title : 'sweatshirt123',
-            price : 200 ,
-            thumbnail : 'sdasdasd'
-        }
-       
-     ]
-
-     function setcart (){
-        localStorage.setItem('products',JSON.stringify(products) )
-     }
-     setcart()
-    //  console.log(localStorage.getItem('products'))
-     var item =JSON.parse(localStorage.getItem('products')) 
-    //  console.log(item)
-     for(let i=0 ;i<item.length;i++)
-     {
-        console.log(item[i].title)
-        console.log(item[i].price)  
-        console.log(item[i].thumbnail)
-    }
-        setcart()
-     
-    </script>
+   
 </body>
 
 </html>
