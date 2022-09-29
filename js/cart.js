@@ -170,31 +170,29 @@ function decrease (){
    var new_value = parseFloat(cart_dec) -1
 //    console.log(new_value)
     localStorage.setItem('count', new_value);
-
-    function pagesAddToCart(){
-        var arrOfProducts = []
-    
-       
-        
-                if (localStorage.products != null) {
-                    console.log('if ')
-                    arrOfProducts = JSON.parse(localStorage.getItem('products'))
-                    console.log(arrOfProducts);
-                    arrOfProducts.push(newProduct);
-                    console.log(arrOfProducts);
-                    localStorage.setItem('products',JSON.stringify(arrOfProducts) )
-                    // let watch = JSON.parse(localStorage.getItem('products'))
-                    // console.log(watch)
-                } else {
-                    console.log('else ')
-                    arrOfProducts.push(newProduct);
-                    localStorage.setItem('products',JSON.stringify(arrOfProducts) )
-                }
-                console.log(arrOfProducts)
-                return ;
-            }
-   
 }
+
+    // function pagesAddToCart(){
+    //     var arrOfProducts = []
+    // var newProduct= products[i]
+
+    //             if (localStorage.products != null) {
+    //                 console.log('if ')
+    //                 arrOfProducts = JSON.parse(localStorage.getItem('products'))
+    //                 console.log(arrOfProducts);
+    //                 arrOfProducts.push(newProduct);
+    //                 console.log(arrOfProducts);
+    //                 localStorage.setItem('products',JSON.stringify(arrOfProducts) )
+    //                 // let watch = JSON.parse(localStorage.getItem('products'))
+    //                 // console.log(watch)
+    //             } else {
+    //                 console.log('else ')
+    //                 arrOfProducts.push(newProduct);
+    //                 localStorage.setItem('products',JSON.stringify(arrOfProducts) )
+    //             }
+    //             console.log(arrOfProducts)
+    //             return ;
+    //         }
 
 
 addToCartClicked()

@@ -83,7 +83,33 @@ function showSelectedProducts(products, productsSectionID) {
         })
         cartButton.addEventListener("click",()=>{
             if(isLoggedIn()){
-                pagesAddToCart(products[i]);
+               
+                    var arrOfProducts = []
+                    var newProduct= products[i]
+                    console.log('pages ')
+                    
+                            if (localStorage.products != null) {
+                                console.log('if ')
+                                console.log('new',newProduct)
+                                arrOfProducts = JSON.parse(localStorage.getItem('products'))
+                                console.log(arrOfProducts);
+                                arrOfProducts.push(newProduct);
+                                console.log(arrOfProducts);
+                                localStorage.setItem('products',JSON.stringify(arrOfProducts) )
+                                // let watch = JSON.parse(localStorage.getItem('products'))
+                                // console.log(watch)
+                            } else {
+                                console.log('else ')
+                                arrOfProducts.push(newProduct);
+                                localStorage.setItem('products',JSON.stringify(arrOfProducts) )
+                            }
+                            console.log(arrOfProducts)
+                            
+                           
+                           
+                        
+               
+               
             }else{
                 alert('you need to login to access your cart!');
                 window.location.href = "./login.html";
