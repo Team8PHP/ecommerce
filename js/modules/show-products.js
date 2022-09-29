@@ -69,7 +69,7 @@ function showSelectedProducts(products, productsSectionID) {
         viewMoreButton = document.getElementById('more-details-btn-' + products[i].id)
         categoryLink= document.getElementById('product-category-' + products[i].id)
         viewMoreButton.addEventListener("click", () => {
-            window.location.href = `./products.html?product-id=${products[i].id}&category=${products[i].category}`;
+            window.location.href = `./product-details.html?product-id=${products[i].id}&category=${products[i].category}`;
         })
         categoryLink.addEventListener("click",async()=>{
             let choosedProducts =  await getCategoryProducts(products[i].category)
