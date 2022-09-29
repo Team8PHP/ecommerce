@@ -81,7 +81,12 @@ function showSelectedProducts(products, productsSectionID) {
             showProductsWithSlider(choosedProducts, "products-section");
         })
         cartButton.addEventListener("click",()=>{
-            pagesAddToCart(products[i]);
+            if(isLoggedIn()){
+                pagesAddToCart(products[i]);
+            }else{
+                alert('you need to login to access your cart!');
+                window.location.href = "./login.html";
+            }
         })
 
     }
