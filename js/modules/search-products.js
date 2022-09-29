@@ -26,6 +26,7 @@ export function searchBar(bar_id, items_id, ref_section_id, search_buffer) {
         itemsDiv.replaceChildren();
         for (let i = 0; i < filteredProducts.length; i++) {
             let newItem = document.createElement("h6");
+            newItem.classList.add("search-result");
             let newItemLink = document.createElement("a");
             newItemLink.innerHTML = filteredProducts[i].title;
             newItemLink.href = ref_section_id
