@@ -155,10 +155,15 @@ function updateCartTotal() {
 
 
 // increase count in local storage when adding item in cart 
+
+
 function increase(){
     var cart_count =cart_items.childElementCount
 localStorage.setItem('count', cart_count);
 // console.log(cart_count)
+ let badge = localStorage.getItem('count')
+ var carticon = document.getElementById('cart')
+ carticon.innerText= badge
     
 }
 
@@ -179,16 +184,9 @@ addToCartClicked()
 
 
 
-function pagesaddtocart(products){
+function pagesAddToCart(){
     var arrOfProducts = []
-    var newProduct = 
-                {
-                    title: 'sweatshirt',
-                    price: 20,
-                    thumbnail: 'sdasd'
-                }
     
-     
             if (localStorage.products != null) {
                 console.log('if ')
                 arrOfProducts = JSON.parse(localStorage.getItem('products'))
@@ -204,6 +202,7 @@ function pagesaddtocart(products){
                 localStorage.setItem('products',JSON.stringify(arrOfProducts) )
             }
             console.log(arrOfProducts)
+            increase();
             return ;
     
         }
