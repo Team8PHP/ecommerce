@@ -1,3 +1,6 @@
+import {increase} from "./modules/cart-module.js";
+
+
 var cart_container = document.getElementsByClassName("cart_container")[0]
 var cart_items = document.getElementsByClassName('cart-items')[0]
 
@@ -36,42 +39,42 @@ function removeCartItem(event) {
     updateCartTotal()
     decrease()
     localStorage.clear()
-//  
-//   console.log(buttonClicked.parentElement.parentElement.children[0].children[1].innerText)
-//   console.log(buttonClicked.parentElement.parentElement.children[0].children[0].src)  
-//   console.log(buttonClicked.parentElement.parentElement.children[1].innerText) 
- 
-var newproducts = [ ]
-// console.log(cart_items.children)
-let arr =cart_items.children
-for(let i=0; i< arr.length;i++){
-    // console.log(arr[i].children[0].children[1].innerText)
-    // console.log(arr[i].children[0].children[0].src)
-    // console.log(arr[i].children[1].innerText)
-    var newobj =
-        {title: arr[i].children[0].children[1].innerText,
-            price:arr[i].children[1].innerText,
-            thumbnail:arr[i].children[0].children[0].src
-            }
-            newproducts.push(newobj)
-  }
-localStorage.setItem('products',JSON.stringify(newproducts))
-// console.log(newproducts)
+    //  
+    //   console.log(buttonClicked.parentElement.parentElement.children[0].children[1].innerText)
+    //   console.log(buttonClicked.parentElement.parentElement.children[0].children[0].src)  
+    //   console.log(buttonClicked.parentElement.parentElement.children[1].innerText) 
 
- var itemget =JSON.parse(localStorage.getItem('products'))
-//  console.log(itemget)
+    var newproducts = []
+    // console.log(cart_items.children)
+    let arr = cart_items.children
+    for (let i = 0; i < arr.length; i++) {
+        // console.log(arr[i].children[0].children[1].innerText)
+        // console.log(arr[i].children[0].children[0].src)
+        // console.log(arr[i].children[1].innerText)
+        var newobj =
+        {
+            title: arr[i].children[0].children[1].innerText,
+            price: arr[i].children[1].innerText,
+            thumbnail: arr[i].children[0].children[0].src
+        }
+        newproducts.push(newobj)
+    }
+    localStorage.setItem('products', JSON.stringify(newproducts))
+    // console.log(newproducts)
 
-    for(let i=0 ;i<itemget.length;i++)
-     {
-       var title = itemget[i].title
-       var price =  itemget[i].price 
-       var imageSrc =itemget[i].thumbnail
-       console.log(title,price,imageSrc)
-       
+    var itemget = JSON.parse(localStorage.getItem('products'))
+    //  console.log(itemget)
+
+    for (let i = 0; i < itemget.length; i++) {
+        var title = itemget[i].title
+        var price = itemget[i].price
+        var imageSrc = itemget[i].thumbnail
+        console.log(title, price, imageSrc)
+
     }
 
- }
-    
+}
+
 // number of item in cart  can be only number and  >0
 function quantityChanged(event) {
     var input = event.target
@@ -83,20 +86,19 @@ function quantityChanged(event) {
 
 // get title , price and image of product and send to 3 functions 
 function addToCartClicked(event) {
-    var item =JSON.parse(localStorage.getItem('products'))
-    for(let i=0 ;i<item.length;i++)
-     {
-       var title = item[i].title
-       var price =  item[i].price 
-       var imageSrc =item[i].thumbnail
-    //    console.log(title,price,imageSrc)
-       addItemToCart(title, price, imageSrc)
-       updateCartTotal()
-       increase()
-      
+    var item = JSON.parse(localStorage.getItem('products'))
+    for (let i = 0; i < item.length; i++) {
+        var title = item[i].title
+        var price = item[i].price
+        var imageSrc = item[i].thumbnail
+        //    console.log(title,price,imageSrc)
+        addItemToCart(title, price, imageSrc)
+        updateCartTotal()
+        increase()
+
     }
     // console.log(title,price,imageSrc)
-    
+
 }
 
 // add new div containing product details and check if item is already added alert the user
@@ -150,65 +152,23 @@ function updateCartTotal() {
         total = total + (price * quantity)
     }
     total = Math.round(total * 100) / 100
-    document.getElementsByClassName('cart-total-price')[0].innerText = 'Total = '+'$' + total 
+    document.getElementsByClassName('cart-total-price')[0].innerText = 'Total = ' + '$' + total
 }
 
 
 // increase count in local storage when adding item in cart 
 
 
-function increase(){
-    var cart_count =cart_items.childElementCount
-localStorage.setItem('count', cart_count);
-// console.log(cart_count)
- let badge = localStorage.getItem('count')
- var carticon = document.getElementById('cart')
- carticon.innerText= badge
-    
-}
+
 
 // decrease count in local storage when removing item in cart 
-function decrease (){
-   var cart_dec = localStorage.getItem('count')
-  
-   var new_value = parseFloat(cart_dec) -1
-//    console.log(new_value)
+function decrease() {
+    var cart_dec = localStorage.getItem('count')
+
+    var new_value = parseFloat(cart_dec) - 1
+    //    console.log(new_value)
     localStorage.setItem('count', new_value);
-   
+
 }
 
-
-
-
 addToCartClicked()
-
-
-
-function pagesAddToCart(){
-    var arrOfProducts = []
-    
-            if (localStorage.products != null) {
-                console.log('if ')
-                arrOfProducts = JSON.parse(localStorage.getItem('products'))
-                console.log(arrOfProducts);
-                arrOfProducts.push(newProduct);
-                console.log(arrOfProducts);
-                localStorage.setItem('products',JSON.stringify(arrOfProducts) )
-                // let watch = JSON.parse(localStorage.getItem('products'))
-                // console.log(watch)
-            } else {
-                console.log('else ')
-                arrOfProducts.push(newProduct);
-                localStorage.setItem('products',JSON.stringify(arrOfProducts) )
-            }
-            console.log(arrOfProducts)
-            increase();
-            return ;
-    
-        }
-
-
-    function setcart (){
-        localStorage.setItem('products',JSON.stringify(arrOfProducts) )
-    }
-

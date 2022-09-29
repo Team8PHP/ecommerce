@@ -4,6 +4,8 @@
 
 ****************************************************************************************************************** */
 import {getAllProducts , getCategoryProducts} from './products-api.js';
+import {pagesAddToCart} from "./cart-module.js";
+import {isLoggedIn} from "./loggedIn.js";
 
 export function showProducts(showedProducts, productsSectionID) {
 

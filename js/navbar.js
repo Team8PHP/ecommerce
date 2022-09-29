@@ -1,10 +1,4 @@
-function isLoggedIn() {
-    if (sessionStorage.length > 0) {
-        return JSON.parse(sessionStorage.getItem('logged-user'))
-    } else {
-        return false
-    }
-}
+import {isLoggedIn} from "./modules/loggedIn.js";
 
 function loggedInUser() {
     if (isLoggedIn()) {
