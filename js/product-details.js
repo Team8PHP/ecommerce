@@ -25,6 +25,8 @@ const detils = fetch(`https://dummyjson.com/products/${productId}`) //Fetch API 
         <img src="${productDetails.thumbnail}" alt="">
         <p>$${productDetails.price}</p>
         <p>${productDetails.description}</p>
+        <p>Avilabe in stock: ${productDetails.stock}</p>
+        <p>Rating ${productDetails.rating}/5</p>
         <div>
         <img src="${productDetails.images[0]}" alt="">
         <img src="${productDetails.images[1]}" alt="">
@@ -101,7 +103,9 @@ function updateList(){   // Function updateList to handle Comment List
     const productCatigory = await getCategoryProducts(category)
 
     showProducts(productCatigory,"products-section")
-
+    const remove = document.getElementById("product-"+productId);
+    remove.parentElement.remove();
+    remove.remove();
   }
 os();
   //showProducts(similarProduct,"products-section") // Create Function to Add Similar Products
