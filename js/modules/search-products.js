@@ -26,6 +26,7 @@ export function searchBar(bar_id, items_id, ref_section_id, search_buffer) {
         itemsDiv.replaceChildren();
         for (let i = 0; i < filteredProducts.length; i++) {
             let newItem = document.createElement("h6");
+            newItem.classList.add("search-result");
             let newItemLink = document.createElement("a");
             newItemLink.innerHTML = filteredProducts[i].title;
             newItemLink.href = ref_section_id
@@ -34,7 +35,7 @@ export function searchBar(bar_id, items_id, ref_section_id, search_buffer) {
             newItemLink.addEventListener("click", (event) => {
                 event.stopPropagation();
                 console.log("hi");
-                window.location.href = `./test.html?product-id=${filteredProducts[i].id}&category=${filteredProducts[i].category}`;
+                window.location.href = `./product-details.html?product-id=${filteredProducts[i].id}&category=${filteredProducts[i].category}`;
             })
             if (i === 3) { break; }
         }

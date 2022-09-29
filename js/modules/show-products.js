@@ -14,7 +14,9 @@ export function showProducts(showedProducts, productsSectionID) {
 }
 
 export function showProductsWithSlider(showedProducts, productsSectionID) {
+    console.log(productsSectionID);
     const allProductsDiv = document.getElementById(productsSectionID);
+    console.log(allProductsDiv);
     allProductsDiv.replaceChildren();
     console.log(showedProducts);
     createPageSlider(showedProducts, productsSectionID)
@@ -31,15 +33,16 @@ function createProductCard(parentDiv, product) {
         <div class="card" id='product-${product.id}'>
             <div class="overflow-hidden">
                 <img src= ${product.thumbnail}
-                class="card-img-top" style="height:20rem" alt="Gaming Laptop" id="product-img-${product.id}"/>
+                class="card-img-top product-img" style="height:20rem" alt="Gaming Laptop" id="product-img-${product.id}"/>
             </div>
             <div class="card-body">
                 <div class="d-flex justify-content-between">
-                    <p class="small"><a href="/products.html#products-section" class="text-muted" id ="product-category-${product.id}" >${product.category}</a></p>
-                </div>
+                    <p class="small"><a href="/products.html?category=${product.category}#products-section" class="text-muted" id ="product-category-${product.id}" >${product.category}</a></p>
+                    <p class="small text-danger">${parseInt(product.discountPercentage)}% off</p>
+                    </div>
 
                 <div class="d-flex justify-content-between mb-3">
-                    <h5 class="mb-0">${product.title}</h5>
+                    <h5 class="mb-0">${product.title.substring(0, 22)}</h5>
                     <h5 class="text-dark mb-0">$ ${product.price}</h5>
                 </div>
 
@@ -48,7 +51,7 @@ function createProductCard(parentDiv, product) {
                 </div>
                 <div class="d-flex justify-content-around p-3">
                     <button class="btn btn-primary px-3" id="more-details-btn-${product.id}">more details</button>
-                    <button class="btn px-3" id="cart-btn-${product.id}">add to cart</button>
+                    <button class="btn px-3 add-to-cart-btn" id="cart-btn-${product.id}">add to cart</button>
                 </div>
             </div>
         </div>
@@ -88,7 +91,7 @@ function createPageSlider(showedProducts, productsSectionID) {
     for (let count = 0; count <= limit; count++) {
         let newButton = document.createElement("button");
         newButton.innerHTML = count + 1;
-        newButton.classList.add('col-md-1', 'my-4', 'mb-md-0', 'wow', 'fadeInUp')
+        newButton.classList.add('wow', 'fadeInUp')
         bunttonSection.append(newButton);
         newButton.addEventListener("click", () => {
             let input = showedProducts.products.slice(count * numofProducts, (count + 1) * numofProducts);
@@ -100,3 +103,10 @@ function createPageSlider(showedProducts, productsSectionID) {
     showSelectedProducts(showedProducts.products.slice(0, numofProducts), productsSectionID);
 
 }
+
+export async function showCategoryProducts(category,productsSectionID) { 
+    console.log(productsSectionID);
+    let products = await getCategoryProducts(category)
+    console.log(products);
+    showProductsWithSlider(products, productsSectionID);
+ }
