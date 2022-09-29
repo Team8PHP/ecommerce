@@ -1,11 +1,12 @@
-import {showProducts,showProductsWithSlider} from './modules/show-products.js';
-import {getCategoryProducts} from './modules/products-api.js'
+import { showProducts, showProductsWithSlider } from './modules/show-products.js';
+import { getCategoryProducts } from './modules/products-api.js';
+import { isLoggedIn } from './modules/loggedIn.js';
 /*
 Create Variable 
-*/ 
+*/
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const productId =  urlParams.get('product-id');
+const productId = urlParams.get('product-id');
 const category = urlParams.get('category');
 const inputElem = document.querySelector('#input-name');
 const form = document.querySelector('#form');
@@ -17,10 +18,10 @@ const toDoArray = JSON.parse(localStorage.getItem('to-do-list')) || [];
 //////////
 ////////
 const detils = fetch(`https://dummyjson.com/products/${productId}`) //Fetch API To git Product by ID 
-.then((data) =>{return data.json();})
-.then(productDetails =>{         //Create Function to get product details
+  .then((data) => { return data.json(); })
+  .then(productDetails => {         //Create Function to get product details
     //console.log(productDetails.title);
-        let makeup = `
+    let makeup = `
         <div class="container mt-5 mb-5">
         <div class="row d-flex justify-content-center">
           <div class="col-md-12">
@@ -55,7 +56,7 @@ const detils = fetch(`https://dummyjson.com/products/${productId}`) //Fetch API 
                     <h5 class="">In stock : ${productDetails.stock}</h5>
                     <h5 class="mt-2">Rating : ${productDetails.rating}/5</h5>
                     </div>
-                    <div class="cart mt-4 align-items-center"> <button class="btn bg-main text-uppercase mr-2 px-4">Add
+                    <div class="cart mt-4 align-items-center"> <button id="details-add-cart" class="btn bg-main text-uppercase mr-2 px-4">Add
                         to cart</button>
                     </div>
                   </div>
@@ -65,91 +66,114 @@ const detils = fetch(`https://dummyjson.com/products/${productId}`) //Fetch API 
           </div>
         </div>
       </div>`
-        document.getElementById("product").insertAdjacentHTML('afterbegin',makeup);
-});
+    document.getElementById("product").insertAdjacentHTML('afterbegin', makeup);
+  });
 
 ////////////////////
 //////////////////
 ////////////////
 
-function updateList(){   // Function updateList to handle Comment List
-    listElem.innerHTML = '';
-  
-    for (const key in toDoArray) {
-      const li = document.createElement('li');
-      li.classList.add('list-group-item','w-50','d-flex','justify-content-between','align-items-center');
-      const span = document.createElement('span');
-      span.innerText = toDoArray[key];
-  
-      const button = document.createElement('button');
-      button.innerText = 'Delete';
-      button.classList.add('btn','btn-danger');
-      button.setAttribute('key',key); 
-      button.classList.add('delete');
-  
-      li.appendChild(span);
-      li.appendChild(button);
-      listElem.appendChild(li);
-    }
-  
-    localStorage.setItem('commentList',JSON.stringify(toDoArray)); // Add CommentList to localStorage
+function updateList() {   // Function updateList to handle Comment List
+  listElem.innerHTML = '';
+
+  for (const key in toDoArray) {
+    const li = document.createElement('li');
+    li.classList.add('list-group-item', 'w-50', 'd-flex', 'justify-content-between', 'align-items-center');
+    const span = document.createElement('span');
+    span.innerText = toDoArray[key];
+
+    const button = document.createElement('button');
+    button.innerText = 'Delete';
+    button.classList.add('btn', 'btn-danger');
+    button.setAttribute('key', key);
+    button.classList.add('delete');
+
+    li.appendChild(span);
+    li.appendChild(button);
+    listElem.appendChild(li);
   }
 
-  function addToList(value){ //Function Add comment to List 
-    if (value === '') return;
-  
-    toDoArray.push(value);
-  
-    updateList();
-    inputElem.value = '';
-    inputElem.focus();
+  localStorage.setItem('commentList', JSON.stringify(toDoArray)); // Add CommentList to localStorage
+}
+
+function addToList(value) { //Function Add comment to List 
+  if (value === '') return;
+
+  toDoArray.push(value);
+
+  updateList();
+  inputElem.value = '';
+  inputElem.focus();
+}
+
+function deleteFromList(key) {  //Function Delete Comment From List
+
+  toDoArray.splice(Number(key), 1);
+
+  updateList();
+  inputElem.value = '';
+  inputElem.focus();
+}
+
+form.addEventListener('submit', e => { //AddEventListener to add list in HTML
+  e.preventDefault();
+  addToList(inputElem.value);
+});
+document.addEventListener('click', e => {//AddEventListener to delete list from HTML
+  const el = e.target;
+  if (el.classList.contains('delete')) {
+    deleteFromList(el.getAttribute('key'));
   }
+});
 
-  function deleteFromList(key){  //Function Delete Comment From List
+updateList(); //Call Function
 
-    toDoArray.splice(Number(key),1);
+////////////////////////
+//////////////////////
+////////////////////
+
+
+async function os() {
+  const productCatigory = await getCategoryProducts(category)
+  cartBtn();
+  showProducts(productCatigory, "products-section")
+  const remove = document.getElementById("product-" + productId);
+  remove.parentElement.remove();
+  remove.remove();
   
-    updateList();
-    inputElem.value = '';
-    inputElem.focus();
-  }
-
-  form.addEventListener('submit', e => { //AddEventListener to add list in HTML
-    e.preventDefault();
-    addToList(inputElem.value);
-  });
-  document.addEventListener('click', e => {//AddEventListener to delete list from HTML
-    const el = e.target;
-    if (el.classList.contains('delete')){ 
-      deleteFromList(el.getAttribute('key'));
-    }
-  });
-
-  updateList(); //Call Function
-
-  ////////////////////////
-  //////////////////////
-  ////////////////////
-
-  
-  async function os (){
-    const productCatigory = await getCategoryProducts(category)
-
-    showProducts(productCatigory,"products-section")
-    const remove = document.getElementById("product-"+productId);
-    remove.parentElement.remove();
-    remove.remove();
-  }
+}
 os();
-  //showProducts(similarProduct,"products-section") // Create Function to Add Similar Products
-    // similarProduct.products.slice([productId-1]);
-    // similarProduct.products.forEach(productData => {
-      
-    //    const similarProducts = `<div>
-    //    <h2>${productData.title}</h2>
-    //    <img src="${productData.thumbnail}" alt="">
-    //    <p>${productData.price}$</p>
-    //      </div>`;
-    //     document.getElementById("categorie").insertAdjacentHTML('beforeend',similarProducts); 
-   // });
-//})
+
+
+  // let cartButton = document.getElementById("details-add-cart");
+  // console.log(cartButton)
+  // cartButton.addEventListener("click", () => {
+  //   if (isLoggedIn()) {
+  //     //    added this code of block to add product to localstorage
+  //     var arrOfProducts = []
+  //     var newProduct = productDetails[i]
+  //     console.log('pages ')
+  //     console.log(newProduct)
+
+  //     if (localStorage.products != null) {
+  //       console.log('if ')
+  //       console.log('new', newProduct)
+  //       arrOfProducts = JSON.parse(localStorage.getItem('products'))
+  //       console.log(arrOfProducts);
+  //       arrOfProducts.push(newProduct);
+  //       console.log(arrOfProducts);
+  //       localStorage.setItem('products', JSON.stringify(arrOfProducts))
+  //       // let watch = JSON.parse(localStorage.getItem('products'))
+  //       // console.log(watch)
+  //     } else {
+  //       console.log('else ')
+  //       arrOfProducts.push(newProduct);
+  //       localStorage.setItem('products', JSON.stringify(arrOfProducts))
+  //     }
+  //     console.log(arrOfProducts)
+  //   } else {
+  //     alert('you need to login to access your cart!');
+  //     window.location.href = "./login.html";
+  //   }
+  // })
+

@@ -3,14 +3,15 @@
 *                                       Show Products Module
 
 ****************************************************************************************************************** */
-import {getAllProducts , getCategoryProducts} from './products-api.js';
+import { getAllProducts, getCategoryProducts } from './products-api.js';
+import {isLoggedIn} from './loggedIn.js';
 
 export function showProducts(showedProducts, productsSectionID) {
 
     const allProductsDiv = document.getElementById(productsSectionID);
     allProductsDiv.replaceChildren();
     console.log(showedProducts);
-    showSelectedProducts(showedProducts.products,productsSectionID)
+    showSelectedProducts(showedProducts.products, productsSectionID)
 }
 
 export function showProductsWithSlider(showedProducts, productsSectionID) {
@@ -24,7 +25,7 @@ export function showProductsWithSlider(showedProducts, productsSectionID) {
 
 export async function showALLProducts() {
     const products = await getAllProducts()
-    showProductsWithSlider(products,"products-section");
+    showProductsWithSlider(products, "products-section");
 }
 
 function createProductCard(parentDiv, product) {
@@ -64,53 +65,53 @@ function showSelectedProducts(products, productsSectionID) {
     console.log(products);
     allProductsDiv.replaceChildren();
     let viewMoreButton = null;
-    let categoryLink= null;
+    let categoryLink = null;
     let cartButton = null;
     products.forEach((product) => {
         createProductCard(allProductsDiv, product);
     })
     for (let i = 0; i < products.length; i++) {
         viewMoreButton = document.getElementById('more-details-btn-' + products[i].id)
-        categoryLink= document.getElementById('product-category-' + products[i].id)
+        categoryLink = document.getElementById('product-category-' + products[i].id)
         cartButton = document.getElementById('cart-btn-' + products[i].id)
         viewMoreButton.addEventListener("click", () => {
             window.location.href = `./product-details.html?product-id=${products[i].id}&category=${products[i].category}`;
         })
-        categoryLink.addEventListener("click",async()=>{
-            let choosedProducts =  await getCategoryProducts(products[i].category)
+        categoryLink.addEventListener("click", async () => {
+            let choosedProducts = await getCategoryProducts(products[i].category)
             console.log();
             showProductsWithSlider(choosedProducts, "products-section");
         })
-        cartButton.addEventListener("click",()=>{
-            if(isLoggedIn()){
-            //    added this code of block to add product to localstorage
-                    var arrOfProducts = []
-                    var newProduct= products[i]
-                    console.log('pages ')
-                    
-                            if (localStorage.products != null) {
-                                console.log('if ')
-                                console.log('new',newProduct)
-                                arrOfProducts = JSON.parse(localStorage.getItem('products'))
-                                console.log(arrOfProducts);
-                                arrOfProducts.push(newProduct);
-                                console.log(arrOfProducts);
-                                localStorage.setItem('products',JSON.stringify(arrOfProducts) )
-                                // let watch = JSON.parse(localStorage.getItem('products'))
-                                // console.log(watch)
-                            } else {
-                                console.log('else ')
-                                arrOfProducts.push(newProduct);
-                                localStorage.setItem('products',JSON.stringify(arrOfProducts) )
-                            }
-                            console.log(arrOfProducts)
-                            
-                           
-                           
-                        
-               
-               
-            }else{
+        cartButton.addEventListener("click", () => {
+            if (isLoggedIn()) {
+                //    added this code of block to add product to localstorage
+                var arrOfProducts = []
+                var newProduct = products[i]
+                console.log('pages ')
+
+                if (localStorage.products != null) {
+                    console.log('if ')
+                    console.log('new', newProduct)
+                    arrOfProducts = JSON.parse(localStorage.getItem('products'))
+                    console.log(arrOfProducts);
+                    arrOfProducts.push(newProduct);
+                    console.log(arrOfProducts);
+                    localStorage.setItem('products', JSON.stringify(arrOfProducts))
+                    // let watch = JSON.parse(localStorage.getItem('products'))
+                    // console.log(watch)
+                } else {
+                    console.log('else ')
+                    arrOfProducts.push(newProduct);
+                    localStorage.setItem('products', JSON.stringify(arrOfProducts))
+                }
+                console.log(arrOfProducts)
+
+
+
+
+
+
+            } else {
                 alert('you need to login to access your cart!');
                 window.location.href = "./login.html";
             }
@@ -140,9 +141,9 @@ function createPageSlider(showedProducts, productsSectionID) {
 
 }
 
-export async function showCategoryProducts(category,productsSectionID) { 
+export async function showCategoryProducts(category, productsSectionID) {
     console.log(productsSectionID);
     let products = await getCategoryProducts(category)
     console.log(products);
     showProductsWithSlider(products, productsSectionID);
- }
+}
