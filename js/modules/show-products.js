@@ -13,7 +13,9 @@ export function showProducts(showedProducts, productsSectionID) {
 }
 
 export function showProductsWithSlider(showedProducts, productsSectionID) {
+    console.log(productsSectionID);
     const allProductsDiv = document.getElementById(productsSectionID);
+    console.log(allProductsDiv);
     allProductsDiv.replaceChildren();
     console.log(showedProducts);
     createPageSlider(showedProducts, productsSectionID)
@@ -34,7 +36,7 @@ function createProductCard(parentDiv, product) {
             </div>
             <div class="card-body">
                 <div class="d-flex justify-content-between">
-                    <p class="small"><a href="/products.html#products-section" class="text-muted" id ="product-category-${product.id}" >${product.category}</a></p>
+                    <p class="small"><a href="/products.html?category=${product.category}#products-section" class="text-muted" id ="product-category-${product.id}" >${product.category}</a></p>
                     <p class="small text-danger">${parseInt(product.discountPercentage)}% off</p>
                     </div>
 
@@ -100,3 +102,10 @@ function createPageSlider(showedProducts, productsSectionID) {
     showSelectedProducts(showedProducts.products.slice(0, numofProducts), productsSectionID);
 
 }
+
+export async function showCategoryProducts(category,productsSectionID) { 
+    console.log(productsSectionID);
+    let products = await getCategoryProducts(category)
+    console.log(products);
+    showProductsWithSlider(products, productsSectionID);
+ }
