@@ -83,7 +83,7 @@ function showSelectedProducts(products, productsSectionID) {
         })
         cartButton.addEventListener("click",()=>{
             if(isLoggedIn()){
-               
+            //    added this code of block to add product to localstorage
                     var arrOfProducts = []
                     var newProduct= products[i]
                     console.log('pages ')
