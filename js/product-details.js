@@ -1,0 +1,122 @@
+import {showProducts,showProductsWithSlider} from './modules/show-products.js';
+import {getCategoryProducts} from './modules/products-api.js'
+/*
+Create Variable 
+*/ 
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const productId =  urlParams.get('product-id');
+const category = urlParams.get('category');
+const inputElem = document.querySelector('#input-name');
+const form = document.querySelector('#form');
+const listElem = document.querySelector('#commentList');
+const buttonElem = document.querySelector('#commentList button');
+const toDoArray = JSON.parse(localStorage.getItem('to-do-list')) || [];
+
+////////////
+//////////
+////////
+const detils = fetch(`https://dummyjson.com/products/${productId}`) //Fetch API To git Product by ID 
+.then((data) =>{return data.json();})
+.then(productDetails =>{         //Create Function to get product details
+    //console.log(productDetails.title);
+        let makeup = `<div>
+        <h2>${productDetails.title}</h2>
+        <img src="${productDetails.thumbnail}" alt="">
+        <p>$${productDetails.price}</p>
+        <p>${productDetails.description}</p>
+        <p>Avilabe in stock: ${productDetails.stock}</p>
+        <p>Rating ${productDetails.rating}/5</p>
+        <div>
+        <img src="${productDetails.images[0]}" alt="">
+        <img src="${productDetails.images[1]}" alt="">
+        <img src="${productDetails.images[2]}" alt="">
+        </div>
+        </div>`
+        document.getElementById("product").insertAdjacentHTML('afterbegin',makeup);
+});
+
+////////////////////
+//////////////////
+////////////////
+
+function updateList(){   // Function updateList to handle Comment List
+    listElem.innerHTML = '';
+  
+    for (const key in toDoArray) {
+      const li = document.createElement('li');
+  
+      const span = document.createElement('span');
+      span.innerText = toDoArray[key];
+  
+      const button = document.createElement('button');
+      button.innerText = 'Delete';
+      button.setAttribute('key',key); 
+      button.classList.add('delete');
+  
+      li.appendChild(span);
+      li.appendChild(button);
+      listElem.appendChild(li);
+    }
+  
+    localStorage.setItem('commentList',JSON.stringify(toDoArray)); // Add CommentList to localStorage
+  }
+
+  function addToList(value){ //Function Add comment to List 
+    if (value === '') return;
+  
+    toDoArray.push(value);
+  
+    updateList();
+    inputElem.value = '';
+    inputElem.focus();
+  }
+
+  function deleteFromList(key){  //Function Delete Comment From List
+
+    toDoArray.splice(Number(key),1);
+  
+    updateList();
+    inputElem.value = '';
+    inputElem.focus();
+  }
+
+  form.addEventListener('submit', e => { //AddEventListener to add list in HTML
+    e.preventDefault();
+    addToList(inputElem.value);
+  });
+  document.addEventListener('click', e => {//AddEventListener to delete list from HTML
+    const el = e.target;
+    if (el.classList.contains('delete')){ 
+      deleteFromList(el.getAttribute('key'));
+    }
+  });
+
+  updateList(); //Call Function
+
+  ////////////////////////
+  //////////////////////
+  ////////////////////
+
+  
+  async function os (){
+    const productCatigory = await getCategoryProducts(category)
+
+    showProducts(productCatigory,"products-section")
+    const remove = document.getElementById("product-"+productId);
+    remove.parentElement.remove();
+    remove.remove();
+  }
+os();
+  //showProducts(similarProduct,"products-section") // Create Function to Add Similar Products
+    // similarProduct.products.slice([productId-1]);
+    // similarProduct.products.forEach(productData => {
+      
+    //    const similarProducts = `<div>
+    //    <h2>${productData.title}</h2>
+    //    <img src="${productData.thumbnail}" alt="">
+    //    <p>${productData.price}$</p>
+    //      </div>`;
+    //     document.getElementById("categorie").insertAdjacentHTML('beforeend',similarProducts); 
+   // });
+//})
