@@ -65,12 +65,14 @@ function showSelectedProducts(products, productsSectionID) {
     allProductsDiv.replaceChildren();
     let viewMoreButton = null;
     let categoryLink= null;
+    let cartButton = null;
     products.forEach((product) => {
         createProductCard(allProductsDiv, product);
     })
     for (let i = 0; i < products.length; i++) {
         viewMoreButton = document.getElementById('more-details-btn-' + products[i].id)
         categoryLink= document.getElementById('product-category-' + products[i].id)
+        cartButton = document.getElementById('cart-btn-' + products[i].id)
         viewMoreButton.addEventListener("click", () => {
             window.location.href = `./product-details.html?product-id=${products[i].id}&category=${products[i].category}`;
         })
@@ -78,6 +80,14 @@ function showSelectedProducts(products, productsSectionID) {
             let choosedProducts =  await getCategoryProducts(products[i].category)
             console.log();
             showProductsWithSlider(choosedProducts, "products-section");
+        })
+        cartButton.addEventListener("click",()=>{
+            if(isLoggedIn()){
+                pagesAddToCart(products[i]);
+            }else{
+                alert('you need to login to access your cart!');
+                window.location.href = "./login.html";
+            }
         })
 
     }
