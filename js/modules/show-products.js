@@ -6,10 +6,11 @@
 import {getAllProducts , getCategoryProducts} from './products-api.js';
 
 export function showProducts(showedProducts, productsSectionID) {
+
     const allProductsDiv = document.getElementById(productsSectionID);
     allProductsDiv.replaceChildren();
     console.log(showedProducts);
-    showSelectedProducts(showedProducts.products)
+    showSelectedProducts(showedProducts.products,productsSectionID)
 }
 
 export function showProductsWithSlider(showedProducts, productsSectionID) {
