@@ -61,7 +61,7 @@ function createProductCard(parentDiv, product) {
 
 function showSelectedProducts(products, productsSectionID) {
     const allProductsDiv = document.getElementById(productsSectionID);
-    console.log(productsSectionID);
+    console.log(products);
     allProductsDiv.replaceChildren();
     let viewMoreButton = null;
     let categoryLink= null;
