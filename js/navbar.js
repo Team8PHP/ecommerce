@@ -31,3 +31,12 @@ function loggedInUser() {
 
 }
 loggedInUser();
+
+document.getElementById("cart").addEventListener('click',function(){
+    if (isLoggedIn()) {
+        window.location.href = "cart.html";
+    } else {
+        alert('you need to login to access your cart!');
+        window.location.href = "login.html";
+    }
+});
