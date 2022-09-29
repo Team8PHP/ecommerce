@@ -84,6 +84,7 @@ function quantityChanged(event) {
 // get title , price and image of product and send to 3 functions 
 function addToCartClicked(event) {
     var item =JSON.parse(localStorage.getItem('products'))
+    console.log(item)
     for(let i=0 ;i<item.length;i++)
      {
        var title = item[i].title
@@ -155,15 +156,10 @@ function updateCartTotal() {
 
 
 // increase count in local storage when adding item in cart 
-
-
 function increase(){
     var cart_count =cart_items.childElementCount
 localStorage.setItem('count', cart_count);
 // console.log(cart_count)
- let badge = localStorage.getItem('count')
- var carticon = document.getElementById('cart')
- carticon.innerText= badge
     
 }
 
@@ -174,41 +170,31 @@ function decrease (){
    var new_value = parseFloat(cart_dec) -1
 //    console.log(new_value)
     localStorage.setItem('count', new_value);
+
+    function pagesAddToCart(){
+        var arrOfProducts = []
+    
+       
+        
+                if (localStorage.products != null) {
+                    console.log('if ')
+                    arrOfProducts = JSON.parse(localStorage.getItem('products'))
+                    console.log(arrOfProducts);
+                    arrOfProducts.push(newProduct);
+                    console.log(arrOfProducts);
+                    localStorage.setItem('products',JSON.stringify(arrOfProducts) )
+                    // let watch = JSON.parse(localStorage.getItem('products'))
+                    // console.log(watch)
+                } else {
+                    console.log('else ')
+                    arrOfProducts.push(newProduct);
+                    localStorage.setItem('products',JSON.stringify(arrOfProducts) )
+                }
+                console.log(arrOfProducts)
+                return ;
+            }
    
 }
 
 
-
-
 addToCartClicked()
-
-
-
-function pagesAddToCart(){
-    var arrOfProducts = []
-    
-            if (localStorage.products != null) {
-                console.log('if ')
-                arrOfProducts = JSON.parse(localStorage.getItem('products'))
-                console.log(arrOfProducts);
-                arrOfProducts.push(newProduct);
-                console.log(arrOfProducts);
-                localStorage.setItem('products',JSON.stringify(arrOfProducts) )
-                // let watch = JSON.parse(localStorage.getItem('products'))
-                // console.log(watch)
-            } else {
-                console.log('else ')
-                arrOfProducts.push(newProduct);
-                localStorage.setItem('products',JSON.stringify(arrOfProducts) )
-            }
-            console.log(arrOfProducts)
-            increase();
-            return ;
-    
-        }
-
-
-    function setcart (){
-        localStorage.setItem('products',JSON.stringify(arrOfProducts) )
-    }
-
