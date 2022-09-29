@@ -137,7 +137,7 @@ html {
     font-family: "Lobster", cursive;
     font-size: 3rem;
     background: linear-gradient(to right, #97dffc 0%, #858ae3 25%, #330867 100%);
-    /* -webkit-background-clip: text; */
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -171,7 +171,6 @@ html {
     }
 }
 
-/* End login and sign up styling */
 /* End login and sign up styling */
 
 /* Products page */
