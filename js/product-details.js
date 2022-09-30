@@ -68,31 +68,22 @@ const detils = fetch(`https://dummyjson.com/products/${productId}`) //Fetch API 
       </div>`
     document.getElementById("product").insertAdjacentHTML('afterbegin', makeup);
     let cartButton = document.getElementById("details-add-cart");
-    console.log(cartButton)
     cartButton.addEventListener("click", () => {
       if (isLoggedIn()) {
         //    added this code of block to add product to localstorage
         var arrOfProducts = []
         var newProduct = productDetails
-        console.log('pages ')
-        console.log(newProduct)
-  
         if (localStorage.products != null) {
-          console.log('if ')
-          console.log('new', newProduct)
           arrOfProducts = JSON.parse(localStorage.getItem('products'))
-          console.log(arrOfProducts);
           arrOfProducts.push(newProduct);
-          console.log(arrOfProducts);
           localStorage.setItem('products', JSON.stringify(arrOfProducts))
           // let watch = JSON.parse(localStorage.getItem('products'))
           // console.log(watch)
+          cartButton.innerText = "Added";
         } else {
-          console.log('else ')
           arrOfProducts.push(newProduct);
           localStorage.setItem('products', JSON.stringify(arrOfProducts))
         }
-        console.log(arrOfProducts)
       } else {
         alert('you need to login to access your cart!');
         window.location.href = "./login.html";

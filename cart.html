@@ -41,13 +41,13 @@
                     <a class="nav-link" href="index.html">Team 8</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#home">Home</a>
+                    <a class="nav-link" href="index.html#home">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="./products.html">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contact us</a>
+                    <a class="nav-link" href="index.html#contact">Contact us</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#footer">About us</a>
@@ -102,16 +102,16 @@
                                         <hr class="my-4">
 
                                         <div class="d-flex justify-content-between mb-4">
-                                            <h5 class="text-uppercase">Total price</h5>
+                                            <h5 class="text-uppercase">Sub Total</h5>
                                             <h5 class="cart-total-price"></h5>
                                         </div>
 
                                         <h5 class="text-uppercase mb-3">Shipping</h5>
 
                                         <div class="mb-4 pb-2">
-                                            <select class="select">
-                                                <option value="1">Standard-Delivery- $5.00</option>
-                                                <option value="2">Fast-Delivery- $20.00</option>
+                                            <select class="select" id="shipping-option" onchange="updateCartTotal()">
+                                                <option value="5">Standard-Delivery- $5.00</option>
+                                                <option value="20">Fast-Delivery- $20.00</option>
                                             </select>
                                         </div>
 

@@ -21,13 +21,21 @@ document.getElementsByClassName('btn-purchase')[0].addEventListener('click', pur
 
 // alert purchase complete and clear cart 
 function purchaseClicked() {
-    $("#exampleModal").modal();
-    var cartItems = document.getElementsByClassName('cart-items')[0]
-    while (cartItems.hasChildNodes()) {
-        cartItems.removeChild(cartItems.firstChild)
+    var cartItems = document.getElementsByClassName('cart-items')[0];
+    let addressInput = document.getElementById('address').value;
+    if (cartItems.hasChildNodes() && addressInput != "") {
+        $("#exampleModal").modal();
+        while (cartItems.hasChildNodes()) {
+            cartItems.removeChild(cartItems.firstChild)
+        }
+        updateCartTotal()
+        localStorage.clear()
+    } else if (cartItems.hasChildNodes() && addressInput == ""){
+        alert("please fill shipping address!");
+    } else {
+        alert("cart is empty!");
     }
-    updateCartTotal()
-    localStorage.clear()
+
 }
 //  remove the parent div containing product 
 function removeCartItem(event) {
@@ -36,18 +44,11 @@ function removeCartItem(event) {
     updateCartTotal()
     decrease()
     localStorage.clear()
-    //  
-    //   console.log(buttonClicked.parentElement.parentElement.children[0].children[1].innerText)
-    //   console.log(buttonClicked.parentElement.parentElement.children[0].children[0].src)  
-    //   console.log(buttonClicked.parentElement.parentElement.children[1].innerText) 
 
     var newproducts = []
-    // console.log(cart_items.children)
+
     let arr = cart_items.children
     for (let i = 0; i < arr.length; i++) {
-        // console.log(arr[i].children[0].children[1].innerText)
-        // console.log(arr[i].children[0].children[0].src)
-        // console.log(arr[i].children[1].innerText)
         var newobj =
         {
             title: arr[i].children[0].children[1].innerText,
@@ -57,16 +58,14 @@ function removeCartItem(event) {
         newproducts.push(newobj)
     }
     localStorage.setItem('products', JSON.stringify(newproducts))
-    // console.log(newproducts)
 
     var itemget = JSON.parse(localStorage.getItem('products'))
-    //  console.log(itemget)
+
 
     for (let i = 0; i < itemget.length; i++) {
         var title = itemget[i].title
         var price = itemget[i].price
         var imageSrc = itemget[i].thumbnail
-        console.log(title, price, imageSrc)
 
     }
 
@@ -84,18 +83,15 @@ function quantityChanged(event) {
 // get title , price and image of product and send to 3 functions 
 function addToCartClicked(event) {
     var item = JSON.parse(localStorage.getItem('products'))
-    console.log(item)
     for (let i = 0; i < item.length; i++) {
         var title = item[i].title
         var price = item[i].price
         var imageSrc = item[i].thumbnail
-        //    console.log(title,price,imageSrc)
         addItemToCart(title, price, imageSrc)
         updateCartTotal()
         increase()
 
     }
-    // console.log(title,price,imageSrc)
 
 }
 
@@ -106,7 +102,6 @@ function addItemToCart(title, price, imageSrc) {
     var cartItemNames = cartItems.getElementsByClassName('cart-item-title')
     for (var i = 0; i < cartItemNames.length; i++) {
         if (cartItemNames[i].innerText == title) {
-            alert('This item is already added to the cart')
             return
         }
     }
@@ -118,7 +113,7 @@ function addItemToCart(title, price, imageSrc) {
             class="img-fluid rounded-3" alt="${title}">
     </div>
     <div class="col-md-3 col-lg-3 col-xl-3">
-        <h6 class="text-black mb-0">${title}</h6>
+        <h6 class="text-black mb-0 cart-item-title">${title}</h6>
     </div>
     <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
 
@@ -145,20 +140,23 @@ function addItemToCart(title, price, imageSrc) {
 // update total price based on quantity of 1 item and sum of all items 
 // the total is rounded to 2 decimal points only
 function updateCartTotal() {
-    var cartItemContainer = document.getElementsByClassName('cart-items')[0]
-    var cartRows = cartItemContainer.getElementsByClassName('cart-row')
-    var total = 0
+    var cartItemContainer = document.getElementsByClassName('cart-items')[0];
+    var cartRows = cartItemContainer.getElementsByClassName('cart-row');
+    var shippingOption = document.getElementById("shipping-option").value;
+    var total = 0;
+    var total2 = 0;
     for (var i = 0; i < cartRows.length; i++) {
         var cartRow = cartRows[i]
         var priceElement = cartRow.getElementsByClassName('cart-price')[0]
         var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0]
         var price = parseFloat(priceElement.innerText.replace('$', ''))
         var quantity = quantityElement.value
-        total = total + (price * quantity)
+        total = total + (price * quantity);
+        total2 = total2 + (price * quantity) + parseInt(shippingOption);
     }
     total = Math.round(total * 100) / 100
     document.getElementsByClassName('cart-total-price')[0].innerText = '$' + total;
-    document.getElementsByClassName('cart-total-price')[1].innerText = '$' + total;
+    document.getElementsByClassName('cart-total-price')[1].innerText = '$' + total2;
 }
 
 
@@ -166,7 +164,6 @@ function updateCartTotal() {
 function increase() {
     var cart_count = cart_items.childElementCount
     localStorage.setItem('count', cart_count);
-    console.log(cart_count)
 
 }
 
@@ -175,31 +172,8 @@ function decrease() {
     var cart_dec = localStorage.getItem('count')
 
     var new_value = parseFloat(cart_dec) - 1
-    console.log(new_value)
     localStorage.setItem('count', new_value);
 }
-
-// function pagesAddToCart(){
-//     var arrOfProducts = []
-// var newProduct= products[i]
-
-//             if (localStorage.products != null) {
-//                 console.log('if ')
-//                 arrOfProducts = JSON.parse(localStorage.getItem('products'))
-//                 console.log(arrOfProducts);
-//                 arrOfProducts.push(newProduct);
-//                 console.log(arrOfProducts);
-//                 localStorage.setItem('products',JSON.stringify(arrOfProducts) )
-//                 // let watch = JSON.parse(localStorage.getItem('products'))
-//                 // console.log(watch)
-//             } else {
-//                 console.log('else ')
-//                 arrOfProducts.push(newProduct);
-//                 localStorage.setItem('products',JSON.stringify(arrOfProducts) )
-//             }
-//             console.log(arrOfProducts)
-//             return ;
-//         }
 
 var itemsCount = localStorage.getItem('count')
 document.getElementsByClassName('items-count').innerText = itemsCount;

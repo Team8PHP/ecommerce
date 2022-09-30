@@ -10,16 +10,12 @@ export function showProducts(showedProducts, productsSectionID) {
 
     const allProductsDiv = document.getElementById(productsSectionID);
     allProductsDiv.replaceChildren();
-    console.log(showedProducts);
     showSelectedProducts(showedProducts.products, productsSectionID)
 }
 
 export function showProductsWithSlider(showedProducts, productsSectionID) {
-    console.log(productsSectionID);
     const allProductsDiv = document.getElementById(productsSectionID);
-    console.log(allProductsDiv);
     allProductsDiv.replaceChildren();
-    console.log(showedProducts);
     createPageSlider(showedProducts, productsSectionID)
 }
 
@@ -62,7 +58,6 @@ function createProductCard(parentDiv, product) {
 
 function showSelectedProducts(products, productsSectionID) {
     const allProductsDiv = document.getElementById(productsSectionID);
-    console.log(products);
     allProductsDiv.replaceChildren();
     let viewMoreButton = null;
     let categoryLink = null;
@@ -79,7 +74,6 @@ function showSelectedProducts(products, productsSectionID) {
         })
         categoryLink.addEventListener("click", async () => {
             let choosedProducts = await getCategoryProducts(products[i].category)
-            console.log();
             showProductsWithSlider(choosedProducts, "products-section");
         })
         cartButton.addEventListener("click", () => {
@@ -87,30 +81,20 @@ function showSelectedProducts(products, productsSectionID) {
                 //    added this code of block to add product to localstorage
                 var arrOfProducts = []
                 var newProduct = products[i]
-                console.log('pages ')
+                var addedBtn = document.getElementById(`cart-btn-${products[i].id}`);
 
                 if (localStorage.products != null) {
-                    console.log('if ')
-                    console.log('new', newProduct)
                     arrOfProducts = JSON.parse(localStorage.getItem('products'))
-                    console.log(arrOfProducts);
                     arrOfProducts.push(newProduct);
-                    console.log(arrOfProducts);
-                    localStorage.setItem('products', JSON.stringify(arrOfProducts))
+                    localStorage.setItem('products', JSON.stringify(arrOfProducts));
                     // let watch = JSON.parse(localStorage.getItem('products'))
                     // console.log(watch)
                 } else {
                     console.log('else ')
                     arrOfProducts.push(newProduct);
-                    localStorage.setItem('products', JSON.stringify(arrOfProducts))
+                    localStorage.setItem('products', JSON.stringify(arrOfProducts));
                 }
-                console.log(arrOfProducts)
-
-
-
-
-
-
+                addedBtn.innerText = "Added";
             } else {
                 alert('you need to login to access your cart!');
                 window.location.href = "./login.html";
@@ -132,8 +116,6 @@ function createPageSlider(showedProducts, productsSectionID) {
         bunttonSection.append(newButton);
         newButton.addEventListener("click", () => {
             let input = showedProducts.products.slice(count * numofProducts, (count + 1) * numofProducts);
-            console.log(input);
-            console.log(productsSectionID);
             showSelectedProducts(input, productsSectionID);
         })
     }
@@ -142,8 +124,6 @@ function createPageSlider(showedProducts, productsSectionID) {
 }
 
 export async function showCategoryProducts(category, productsSectionID) {
-    console.log(productsSectionID);
-    let products = await getCategoryProducts(category)
-    console.log(products);
+    let products = await getCategoryProducts(category);
     showProductsWithSlider(products, productsSectionID);
 }
