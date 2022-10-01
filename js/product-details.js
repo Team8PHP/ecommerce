@@ -13,7 +13,7 @@ const inputElem = document.querySelector('#input-name');
 const form = document.querySelector('#form');
 const listElem = document.querySelector('#commentList');
 const buttonElem = document.querySelector('#commentList button');
-const toDoArray = JSON.parse(localStorage.getItem('to-do-list')) || [];
+const toDoArray = JSON.parse(localStorage.getItem(`commentList-${productId}`)) || [];
 
 ////////////
 //////////
@@ -21,7 +21,20 @@ const toDoArray = JSON.parse(localStorage.getItem('to-do-list')) || [];
 const detils = fetch(`https://dummyjson.com/products/${productId}`) //Fetch API To git Product by ID 
   .then((data) => { return data.json(); })
   .then(productDetails => {         //Create Function to get product details
-    //console.log(productDetails.title);
+    let cardBtnContent = "add to cart"
+    /*
+      Section to check if the element is added to cart or not 
+    */
+    if (localStorage.products != null) {
+      let arrOfProducts = JSON.parse(localStorage.getItem('products'))
+      arrOfProducts.forEach(storedProduct => {
+        if (storedProduct.id == productDetails.id) {
+          console.log("here");
+          cardBtnContent = "Added"
+        }
+      });
+    }
+    console.log(cardBtnContent);
     let makeup = `
         <div class="container mt-5 mb-5">
         <div class="row d-flex justify-content-center">
@@ -57,8 +70,7 @@ const detils = fetch(`https://dummyjson.com/products/${productId}`) //Fetch API 
                     <h5 class="">In stock : ${productDetails.stock}</h5>
                     <h5 class="mt-2">Rating : ${productDetails.rating}/5</h5>
                     </div>
-                    <div class="cart mt-4 align-items-center"> <button id="details-add-cart" class="btn bg-main text-uppercase mr-2 px-4">Add
-                        to cart</button>
+                    <div class="cart mt-4 align-items-center"> <button id="details-add-cart" class="btn bg-main text-uppercase mr-2 px-4">${cardBtnContent}</button>
                     </div>
                   </div>
                 </div>
@@ -104,7 +116,7 @@ function updateList() {   // Function updateList to handle Comment List
     listElem.appendChild(li);
   }
 
-  localStorage.setItem('commentList', JSON.stringify(toDoArray)); // Add CommentList to localStorage
+  localStorage.setItem(`commentList-${productId}`, JSON.stringify(toDoArray)); // Add CommentList to localStorage
 }
 
 function addToList(value) { //Function Add comment to List 
