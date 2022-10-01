@@ -25,6 +25,7 @@ function purchaseClicked() {
     let addressInput = document.getElementById('address').value;
     if (cartItems.hasChildNodes() && addressInput != "") {
         $("#exampleModal").modal();
+        document.getElementById('cart_count').innerText=0;
         while (cartItems.hasChildNodes()) {
             cartItems.removeChild(cartItems.firstChild)
         }
@@ -42,8 +43,8 @@ function removeCartItem(event) {
     var buttonClicked = event.target
     buttonClicked.parentElement.parentElement.parentElement.parentElement.remove()
     updateCartTotal()
-    decrease()
-    localStorage.clear()
+    increase()
+    // localStorage.clear()
 
     var newproducts = []
 
@@ -89,7 +90,7 @@ function addToCartClicked(event) {
         var imageSrc = item[i].thumbnail
         addItemToCart(title, price, imageSrc)
         updateCartTotal()
-        increase()
+       
 
     }
 
@@ -162,20 +163,18 @@ function updateCartTotal() {
 
 // increase count in local storage when adding item in cart 
 function increase() {
+    localStorage.removeItem('countclick')
     var cart_count = cart_items.childElementCount
-    localStorage.setItem('count', cart_count);
+    localStorage.setItem('countclick', cart_count);
+    document.getElementById('cart_count').innerText=localStorage.getItem('countclick')
 
 }
 
-// decrease count in local storage when removing item in cart 
-function decrease() {
-    var cart_dec = localStorage.getItem('count')
 
-    var new_value = parseFloat(cart_dec) - 1
-    localStorage.setItem('count', new_value);
-}
 
-var itemsCount = localStorage.getItem('count')
-document.getElementsByClassName('items-count').innerText = itemsCount;
+
+
 
 addToCartClicked()
+
+

@@ -4,7 +4,7 @@
 
 ****************************************************************************************************************** */
 import { getAllProducts, getCategoryProducts } from './products-api.js';
-import {isLoggedIn} from './loggedIn.js';
+import { addToCartBtn } from './add-to-cart.js';
 
 export function showProducts(showedProducts, productsSectionID) {
 
@@ -25,6 +25,19 @@ export async function showALLProducts() {
 }
 
 function createProductCard(parentDiv, product) {
+    /*
+        Section to check if the element is added to cart or not 
+    */
+    let cardBtnContent = "add to cart"
+    if (localStorage.products != null) {
+        let arrOfProducts = JSON.parse(localStorage.getItem('products'))
+        arrOfProducts.forEach(storedProduct => {
+            if (storedProduct.id == product.id) {
+                console.log("here");
+                cardBtnContent = "Added"
+            }
+        });
+    }
     parentDiv.innerHTML += `
     <div class="col-md-6 col-lg-3 my-4 mb-md-0  wow fadeInUp"> 
         <div class="card" id='product-${product.id}'>
@@ -48,7 +61,7 @@ function createProductCard(parentDiv, product) {
                 </div>
                 <div class="d-flex justify-content-around p-3">
                     <button class="btn btn-primary px-3" id="more-details-btn-${product.id}">more details</button>
-                    <button class="btn px-3 add-to-cart-btn" id="cart-btn-${product.id}">add to cart</button>
+                    <button class="btn px-3 add-to-cart-btn" id="cart-btn-${product.id}">${cardBtnContent}</button>
                 </div>
             </div>
         </div>
@@ -77,28 +90,7 @@ function showSelectedProducts(products, productsSectionID) {
             showProductsWithSlider(choosedProducts, "products-section");
         })
         cartButton.addEventListener("click", () => {
-            if (isLoggedIn()) {
-                //    added this code of block to add product to localstorage
-                var arrOfProducts = []
-                var newProduct = products[i]
-                var addedBtn = document.getElementById(`cart-btn-${products[i].id}`);
-
-                if (localStorage.products != null) {
-                    arrOfProducts = JSON.parse(localStorage.getItem('products'))
-                    arrOfProducts.push(newProduct);
-                    localStorage.setItem('products', JSON.stringify(arrOfProducts));
-                    // let watch = JSON.parse(localStorage.getItem('products'))
-                    // console.log(watch)
-                } else {
-                    console.log('else ')
-                    arrOfProducts.push(newProduct);
-                    localStorage.setItem('products', JSON.stringify(arrOfProducts));
-                }
-                addedBtn.innerText = "Added";
-            } else {
-                alert('you need to login to access your cart!');
-                window.location.href = "./login.html";
-            }
+            addToCartBtn(products[i], `cart-btn-${products[i].id}`);
         })
 
     }
@@ -127,3 +119,8 @@ export async function showCategoryProducts(category, productsSectionID) {
     let products = await getCategoryProducts(category);
     showProductsWithSlider(products, productsSectionID);
 }
+
+
+
+
+

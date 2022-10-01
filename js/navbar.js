@@ -40,3 +40,12 @@ document.getElementById("cart").addEventListener('click',function(){
         window.location.href = "login.html";
     }
 });
+
+
+var cart_count =document.getElementById('cart_count')
+function display(){
+var clicked=localStorage.getItem('countclick')
+cart_count.innerText=clicked
+}
+
+display()
