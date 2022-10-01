@@ -4,7 +4,7 @@
 
 ****************************************************************************************************************** */
 import { getAllProducts, getCategoryProducts } from './products-api.js';
-import {isLoggedIn} from './loggedIn.js';
+import {addToCartBtn} from './add-to-cart.js';
 
 export function showProducts(showedProducts, productsSectionID) {
 
@@ -77,38 +77,7 @@ function showSelectedProducts(products, productsSectionID) {
             showProductsWithSlider(choosedProducts, "products-section");
         })
         cartButton.addEventListener("click", () => {
-            if (isLoggedIn()) {
-                //    added this code of block to add product to localstorage
-                var arrOfProducts = []
-                var newProduct = products[i]
-                var addedBtn = document.getElementById(`cart-btn-${products[i].id}`);
-
-                if (localStorage.products != null) {
-                    arrOfProducts = JSON.parse(localStorage.getItem('products'))
-                    arrOfProducts.push(newProduct);
-                    localStorage.setItem('products', JSON.stringify(arrOfProducts));
-                    var clicked=localStorage.getItem('countclick')
-                    clicked=parseInt(clicked)+1
-                    localStorage.setItem('countclick',parseInt(clicked))
-                    console.log(clicked)
-                    cart_count.innerText=clicked
-                    
-                } else {
-                    // console.log('else ')
-                    arrOfProducts.push(newProduct);
-                    localStorage.setItem('products', JSON.stringify(arrOfProducts));
-                    let value = 1
-                    localStorage.setItem('countclick',parseInt(value))
-                    console.log(localStorage.getItem('countclick'))
-                    var clicked=localStorage.getItem('countclick')
-                    cart_count.innerText=clicked
-                }
-                addedBtn.innerText = "Added";
-             
-            } else {
-                alert('you need to login to access your cart!');
-                window.location.href = "./login.html";
-            }
+            addToCartBtn(products[i],`cart-btn-${product.id}`);
         })
 
     }
@@ -142,4 +111,3 @@ export async function showCategoryProducts(category, productsSectionID) {
 
 
  
-var cart_count =document.getElementById('cart_count')
