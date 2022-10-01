@@ -87,14 +87,24 @@ function showSelectedProducts(products, productsSectionID) {
                     arrOfProducts = JSON.parse(localStorage.getItem('products'))
                     arrOfProducts.push(newProduct);
                     localStorage.setItem('products', JSON.stringify(arrOfProducts));
-                    // let watch = JSON.parse(localStorage.getItem('products'))
-                    // console.log(watch)
+                    var clicked=localStorage.getItem('countclick')
+                    clicked=parseInt(clicked)+1
+                    localStorage.setItem('countclick',parseInt(clicked))
+                    console.log(clicked)
+                    cart_count.innerText=clicked
+                    
                 } else {
-                    console.log('else ')
+                    // console.log('else ')
                     arrOfProducts.push(newProduct);
                     localStorage.setItem('products', JSON.stringify(arrOfProducts));
+                    let value = 1
+                    localStorage.setItem('countclick',parseInt(value))
+                    console.log(localStorage.getItem('countclick'))
+                    var clicked=localStorage.getItem('countclick')
+                    cart_count.innerText=clicked
                 }
                 addedBtn.innerText = "Added";
+             
             } else {
                 alert('you need to login to access your cart!');
                 window.location.href = "./login.html";
@@ -127,3 +137,9 @@ export async function showCategoryProducts(category, productsSectionID) {
     let products = await getCategoryProducts(category);
     showProductsWithSlider(products, productsSectionID);
 }
+
+
+
+
+ 
+var cart_count =document.getElementById('cart_count')

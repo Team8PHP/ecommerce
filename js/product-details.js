@@ -77,12 +77,19 @@ const detils = fetch(`https://dummyjson.com/products/${productId}`) //Fetch API 
           arrOfProducts = JSON.parse(localStorage.getItem('products'))
           arrOfProducts.push(newProduct);
           localStorage.setItem('products', JSON.stringify(arrOfProducts))
-          // let watch = JSON.parse(localStorage.getItem('products'))
-          // console.log(watch)
+          var clicked=localStorage.getItem('countclick')
+          clicked=parseInt(clicked)+1
+          localStorage.setItem('countclick',parseInt(clicked))
+          console.log(clicked)
           cartButton.innerText = "Added";
+          cart_count.innerText=clicked
         } else {
+          let value = 1
+          localStorage.setItem('countclick',parseInt(value))
+          var clicked=localStorage.getItem('countclick')
           arrOfProducts.push(newProduct);
           localStorage.setItem('products', JSON.stringify(arrOfProducts))
+          cart_count.innerText=clicked
         }
       } else {
         alert('you need to login to access your cart!');
@@ -167,11 +174,7 @@ async function os() {
   const remove = document.getElementById("product-" + productId);
   remove.parentElement.remove();
   remove.remove();
-  
+
 }
 os();
-
-
-
-  
 
