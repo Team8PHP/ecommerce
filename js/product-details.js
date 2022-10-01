@@ -1,6 +1,7 @@
 import { showProducts, showProductsWithSlider } from './modules/show-products.js';
 import { getCategoryProducts } from './modules/products-api.js';
 import { isLoggedIn } from './modules/loggedIn.js';
+import { addToCartBtn } from './modules/add-to-cart.js';
 /*
 Create Variable 
 */
@@ -69,32 +70,7 @@ const detils = fetch(`https://dummyjson.com/products/${productId}`) //Fetch API 
     document.getElementById("product").insertAdjacentHTML('afterbegin', makeup);
     let cartButton = document.getElementById("details-add-cart");
     cartButton.addEventListener("click", () => {
-      if (isLoggedIn()) {
-        //    added this code of block to add product to localstorage
-        var arrOfProducts = []
-        var newProduct = productDetails
-        if (localStorage.products != null) {
-          arrOfProducts = JSON.parse(localStorage.getItem('products'))
-          arrOfProducts.push(newProduct);
-          localStorage.setItem('products', JSON.stringify(arrOfProducts))
-          var clicked=localStorage.getItem('countclick')
-          clicked=parseInt(clicked)+1
-          localStorage.setItem('countclick',parseInt(clicked))
-          console.log(clicked)
-          cartButton.innerText = "Added";
-          cart_count.innerText=clicked
-        } else {
-          let value = 1
-          localStorage.setItem('countclick',parseInt(value))
-          var clicked=localStorage.getItem('countclick')
-          arrOfProducts.push(newProduct);
-          localStorage.setItem('products', JSON.stringify(arrOfProducts))
-          cart_count.innerText=clicked
-        }
-      } else {
-        alert('you need to login to access your cart!');
-        window.location.href = "./login.html";
-      }
+      addToCartBtn(productDetails, 'details-add-cart');
     })
   });
 ///////////////////////////////////////////////////////////////
@@ -102,8 +78,8 @@ const detils = fetch(`https://dummyjson.com/products/${productId}`) //Fetch API 
 ////////////////////////////////////////////////////////////////////////////
 
 
-  
-  
+
+
 ////////////////////
 //////////////////
 ////////////////
