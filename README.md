@@ -3,7 +3,7 @@
 ## About
 
 - Dynamic ecommerce application made with HTML5, CSS3, javaScript, Bootstrap.
-- Includes active shopping cart, authentication , comments, products filtering nad searching.
+- Includes active shopping cart, authentication , comments, products filtering and searching.
 
 ## Installation
 - Run index.html page with Live server.
