@@ -34,7 +34,7 @@ function createCategoryListItems(categories, categoriesList) {
         categoryItem.setAttribute('id', 'category-' + Number(index + 1));
         let categoryItemLink = document.createElement("a");
         categoryItemLink.innerHTML = category;
-        categoryItemLink.href = `/products.html?category=${category}#products-section`
+        categoryItemLink.href = `./products.html?category=${category}#products-section`
         categoryItem.append(categoryItemLink)
         categoriesList.append(categoryItem)
     })
