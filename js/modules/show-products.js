@@ -47,7 +47,7 @@ function createProductCard(parentDiv, product) {
             </div>
             <div class="card-body">
                 <div class="d-flex justify-content-between">
-                    <p class="small"><a href="/products.html?category=${product.category}#products-section" class="text-muted" id ="product-category-${product.id}" >${product.category}</a></p>
+                    <p class="small"><a href="./products.html?category=${product.category}#products-section" class="text-muted" id ="product-category-${product.id}" >${product.category}</a></p>
                     <p class="small text-danger">${parseInt(product.discountPercentage)}% off</p>
                     </div>
 
